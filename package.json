@@ -1,0 +1,22 @@
+{
+  "author": "tw9y",
+  "name": "pomodorohub",
+  "version": "0.0.1",
+  "repository": {
+    "url": ""
+  },
+  "main": "app/server.coffee",
+  "engines": {
+    "node": "~0.6.1"
+  },
+  "dependencies": {
+    "jade": "*",
+    "stylus": "*",
+    "express": "*",
+    "mongoose": "*",
+    "now": "*"
+  },
+  "devDependencies": {
+    "jasmine-node": "*"
+  }
+}
