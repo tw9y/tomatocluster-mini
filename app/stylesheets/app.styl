@@ -1,0 +1,150 @@
+@import 'colors'
+@import 'fonts'
+@import 'mixins'
+
+body
+  color #fff
+  background darkBackground
+  font-family 'Nobile'
+  margin 0
+  padding 0
+
+article, section, header, footer
+  display block
+
+time
+  font-family 'Monaco'
+
+button
+  box-shadow(0 1px 2px #000)
+  border-radius(5px)
+  vertical-gradient(#ab0202, #440101)
+  cursor pointer
+  border none
+  color #fff
+  padding 10px 30px
+  font-size 16px
+  text-shadow 0 1px 2px #000
+
+button:hover
+  vertical-gradient(#cd0303, #770101)
+
+header
+  background #1D2021
+  border-bottom 1px solid #474747
+  padding: 5px 20px
+
+  strong
+    background url('/images/tomato_cluster.png') no-repeat 0 2px
+    padding: 0 0 0 30px
+    font-family 'Lobster'
+    font-size 20px
+    font-weight normal
+    span
+      font-size 12px
+
+h1
+  text-shadow 0 2px 2px #000
+  font-size 30px
+  margin 10px 0
+
+#focus
+  display none
+  position absolute
+  width 1000px
+  height 1000px
+  vertical-gradient(#fff, #ccc)
+
+  time
+    color #000
+    font-size 200px
+
+#activities
+  overflow hidden
+  padding 0
+  margin 0
+  list-style none
+
+  li
+    float left
+    margin 30px 20px 20px
+
+  article
+    position relative
+    width 250px
+    height 150px
+
+    .info
+      vertical-gradient(#ab0202, #440101)
+      border-radius(8px)
+      box-shadow(0 2px 4px #000)
+      text-shadow 0 1px 1px #000
+      position absolute
+      z-index 200
+      padding 10px
+      width 230px
+      height 130px
+
+      h1
+        font-size 25px
+
+      h2
+        font-size 16px
+        color #ccc
+
+    time
+      border-radius(5px)
+      box-shadow(0 -1px 2px #000)
+      vertical-gradient(#fff, #ccc)
+      font-family 'Monaco', 'Consolas'
+      color #000
+      position absolute
+      width 150px
+      font-size 25px
+      line-height 30px
+      height 40px
+      left 50px
+      top 20px
+      z-index 100
+
+#dashboard
+  text-align center
+  overflow hidden
+
+  #pomodoros
+    overflow hidden
+    width 960px
+    list-style none
+  .pomodoro
+    float left
+    position relative
+    width 200px
+    height 200px
+    article
+      overflow hidden
+      position absolute
+      border-radius(5px)
+      background-color red
+      width 0px
+      height 0px
+
+  #new-pomodoro
+    border-radius(5px)
+    border none
+    padding 5px
+    width 500px
+    font-size 24px
+
+#history
+  width 200px
+  float right
+
+#actions
+  padding 15px 0 0 0
+  position fixed
+  text-align center
+  height 55px
+  width 100%
+  bottom 0
+  border-top 1px solid #474747
+  background #1D2021

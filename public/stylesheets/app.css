@@ -1,0 +1,213 @@
+@font-face {
+  font-family: 'Lobster';
+  src: url("/fonts/LobsterTwo-Regular-webfont.eot");
+  src: url("/fonts/LobsterTwo-Regular-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/LobsterTwo-Regular-webfont.woff") format('woff'), url("/fonts/LobsterTwo-Regular-webfont.ttf") format('truetype'), url("/fonts/LobsterTwo-Regular-webfont.svg#LobsterTwoRegular") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Nobile';
+  src: url("/fonts/nobile-webfont.eot");
+  src: url("/fonts/nobile-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/nobile-webfont.woff") format('woff'), url("/fonts/nobile-webfont.ttf") format('truetype'), url("/fonts/nobile-webfont.svg#NobileRegular") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  color: #fff;
+  background: #343434;
+  font-family: 'Nobile';
+  margin: 0;
+  padding: 0;
+}
+article,
+section,
+header,
+footer {
+  display: block;
+}
+time {
+  font-family: 'Monaco';
+}
+button {
+  -moz-box-shadow: 0 1px 2px #000;
+  -webkit-box-shadow: 0 1px 2px #000;
+  box-shadow: 0 1px 2px #000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #440101;
+  background-image: -ms-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: -moz-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: -o-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ab0202), color-stop(1, #440101));
+  background-image: -webkit-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: linear-gradient(top, #ab0202 0%, #440101 100%);
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  padding: 10px 30px;
+  font-size: 16px;
+  text-shadow: 0 1px 2px #000;
+}
+button:hover {
+  background-color: #770101;
+  background-image: -ms-linear-gradient(top, #cd0303 0%, #770101 100%);
+  background-image: -moz-linear-gradient(top, #cd0303 0%, #770101 100%);
+  background-image: -o-linear-gradient(top, #cd0303 0%, #770101 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #cd0303), color-stop(1, #770101));
+  background-image: -webkit-linear-gradient(top, #cd0303 0%, #770101 100%);
+  background-image: linear-gradient(top, #cd0303 0%, #770101 100%);
+}
+header {
+  background: #1d2021;
+  border-bottom: 1px solid #474747;
+  padding: 5px 20px;
+}
+header strong {
+  background: url("/images/tomato_cluster.png") no-repeat 0 2px;
+  padding: 0 0 0 30px;
+  font-family: 'Lobster';
+  font-size: 20px;
+  font-weight: normal;
+}
+header strong span {
+  font-size: 12px;
+}
+h1 {
+  text-shadow: 0 2px 2px #000;
+  font-size: 30px;
+  margin: 10px 0;
+}
+#focus {
+  display: none;
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  background-color: #ccc;
+  background-image: -ms-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: -moz-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: -o-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ccc));
+  background-image: -webkit-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: linear-gradient(top, #fff 0%, #ccc 100%);
+}
+#focus time {
+  color: #000;
+  font-size: 200px;
+}
+#activities {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#activities li {
+  float: left;
+  margin: 30px 20px 20px;
+}
+#activities article {
+  position: relative;
+  width: 250px;
+  height: 150px;
+}
+#activities article .info {
+  background-color: #440101;
+  background-image: -ms-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: -moz-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: -o-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ab0202), color-stop(1, #440101));
+  background-image: -webkit-linear-gradient(top, #ab0202 0%, #440101 100%);
+  background-image: linear-gradient(top, #ab0202 0%, #440101 100%);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: 0 2px 4px #000;
+  -webkit-box-shadow: 0 2px 4px #000;
+  box-shadow: 0 2px 4px #000;
+  text-shadow: 0 1px 1px #000;
+  position: absolute;
+  z-index: 200;
+  padding: 10px;
+  width: 230px;
+  height: 130px;
+}
+#activities article .info h1 {
+  font-size: 25px;
+}
+#activities article .info h2 {
+  font-size: 16px;
+  color: #ccc;
+}
+#activities article time {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 -1px 2px #000;
+  -webkit-box-shadow: 0 -1px 2px #000;
+  box-shadow: 0 -1px 2px #000;
+  background-color: #ccc;
+  background-image: -ms-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: -moz-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: -o-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #ccc));
+  background-image: -webkit-linear-gradient(top, #fff 0%, #ccc 100%);
+  background-image: linear-gradient(top, #fff 0%, #ccc 100%);
+  font-family: 'Monaco', 'Consolas';
+  color: #000;
+  position: absolute;
+  width: 150px;
+  font-size: 25px;
+  line-height: 30px;
+  height: 40px;
+  left: 50px;
+  top: 20px;
+  z-index: 100;
+}
+#dashboard {
+  text-align: center;
+  overflow: hidden;
+}
+#dashboard #pomodoros {
+  overflow: hidden;
+  width: 960px;
+  list-style: none;
+}
+#dashboard .pomodoro {
+  float: left;
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+#dashboard .pomodoro article {
+  overflow: hidden;
+  position: absolute;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #f00;
+  width: 0px;
+  height: 0px;
+}
+#dashboard #new-pomodoro {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 500px;
+  font-size: 24px;
+}
+#history {
+  width: 200px;
+  float: right;
+}
+#actions {
+  padding: 15px 0 0 0;
+  position: fixed;
+  text-align: center;
+  height: 55px;
+  width: 100%;
+  bottom: 0;
+  border-top: 1px solid #474747;
+  background: #1d2021;
+}

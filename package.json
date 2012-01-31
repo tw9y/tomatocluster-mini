@@ -17,6 +17,8 @@
     "now": "*"
   },
   "devDependencies": {
-    "jasmine-node": "*"
+    "jasmine-node": "*",
+    "phantom": "*",
+    "underscore": "*"
   }
 }

@@ -1,18 +1,29 @@
-# Server
+# Requires
 express = require 'express'
-app = express.createServer()
-app.configure ->
-  app.use express.static(__dirname + '/../static')
-  app.use express.cookieParser()
-  app.use express.session { secret: 'shimsharoo' }
-  app.set 'view engine', 'jade'
-app.get '/', (req, res) ->
-  res.render 'index'
-app.listen 3000
+config = require './config'
 
-# Now
-now = require 'now'
-everyone = now.initialize app
+# Create Server
+app = express.createServer()
+config.configure app
+
+# Our only Route
+app.get '/*', (req, res) ->
+  res.render 'dashboard', { layout: '' }
+app.listen app.set 'port'
+
+# NowJS, WebSocket Stuff
+nowjs = require 'now'
+everyone = nowjs.initialize app
+
+nowjs.on 'connect', ->
+  console.log @now
+
+everyone.now.persist = (model, success) ->
+  # Store in Mongo
+  everyone.now.recieveActivity model
+  success()
+
+module.exports.app = app
 
 # Say It
-console.log 'app running on port 3000'
+console.log 'tomatocluster-mini started on port 3000'
