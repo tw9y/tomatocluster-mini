@@ -6,9 +6,15 @@ config = require './config'
 app = express.createServer()
 config.configure app
 
-# Our only Route
-app.get '/*', (req, res) ->
-  res.render 'dashboard', { layout: '' }
+# Routing
+app.get '/', (req, res) ->
+  res.render 'startpage'
+
+app.post '/cluster', (req, res) ->
+  res.redirect '/', 301
+
+app.get '/cluster/:id', (req, res) ->
+  res.render 'dashboard'
 app.listen app.set 'port'
 
 # NowJS, WebSocket Stuff

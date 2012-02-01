@@ -7,7 +7,7 @@
   },
   "main": "app/server.coffee",
   "engines": {
-    "node": "~0.6.1"
+    "node": "0.6.x"
   },
   "dependencies": {
     "jade": "*",
