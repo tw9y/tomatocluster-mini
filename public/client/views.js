@@ -49,7 +49,7 @@
       };
 
       ActivityView.prototype.stopTicking = function() {
-        return clearTimout(this.tickTimeout);
+        return clearTimeout(this.tickTimeout);
       };
 
       ActivityView.prototype.toggleTimer = function() {

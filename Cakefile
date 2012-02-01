@@ -17,6 +17,3 @@ task 'test', ->
   jasmine.executeSpecsInFolder(specsFolder, (runner, log) ->
     process.exit(if runner.results().failedCount then 1 else 0)
   , isVerbose, showColors, teamCity, useRequireJs, new RegExp("_spec.coffee$", 'i'), jUnitReport)
-
-task 'dev', ->
-  a = 5

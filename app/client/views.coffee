@@ -29,7 +29,7 @@ jQuery ->
       , 1000
 
     stopTicking: ->
-      clearTimout @tickTimeout
+      clearTimeout @tickTimeout
 
     toggleTimer: ->
       @$('time').animate { top: '-30px' }, 400
