@@ -1,25 +1,65 @@
 {spawn, exec} = require 'child_process'
+{print} = require 'util'
+forever = require 'forever'
 
-task 'test', 'Runs all the tests', ->
+# ANSI Terminal Colors
+bold = '\033[0;1m'
+green = '\033[0;32m'
+reset = '\033[0m'
+red = '\033[0;31m'
 
-  jasmine = require 'jasmine-node'
-  util = require 'util'
-  path = require 'path'
+###############################
+# Tasks
+###############################
+task 'dev', ->
+  build_server true
+  build_client true
 
-  specsFolder = path.join __dirname, 'spec'
-  isVerbose = false
-  teamCity = false
-  useRequireJs = false
-  showColors = true
-  coffee = true
-  jUnitReport = false
+task 'build', ->
+  build_server -> build_client -> log ':)', green
 
-  jasmine.executeSpecsInFolder(specsFolder, (runner, log) ->
-    process.exit(if runner.results().failedCount then 1 else 0)
-  , isVerbose, showColors, teamCity, useRequireJs, new RegExp("_spec.coffee$", 'i'), jUnitReport)
+task 'build:client', ->
+  build_client -> log ':)', green
 
-task 'dev', 'Starts developement watchers', ->
-  console.log 'Started development environment'
-  exec 'coffee --compile --watch --output public/client/ app/client/', (err, stdout, stderr) ->
-    throw err if err
-    console.log stdout + stderr
+task 'build:server', ->
+  build_server -> log ':)', green
+
+task 'spec', ->
+  build_server -> build_client -> spec -> log ':)', green
+
+###############################
+# Work
+###############################
+log = (message, color, explanation) ->
+  console.log color + message + reset + ' ' + (explanation or '')
+
+build_server = (watch, callback) ->
+  if typeof watch is 'function'
+    callback = watch
+    watch = false
+  options = ['-c', '-o', 'lib', 'app/server']
+  options.unshift '-w' if watch
+
+  coffee = spawn 'coffee', options
+  coffee.stdout.on 'data', (data) -> print data.toString()
+  coffee.stderr.on 'data', (data) -> log data.toString(), red
+  coffee.on 'exit', (status) -> callback?() if status is 0
+
+build_client = (watch, callback) ->
+  if typeof watch is 'function'
+    callback = watch
+    watch = false
+  options = ['-c', '-o', 'public/client', 'app/client']
+  options.unshift '-w' if watch
+
+  coffee = spawn 'coffee', options
+  coffee.stdout.on 'data', (data) -> print data.toString()
+  coffee.stderr.on 'data', (data) -> log data.toString(), red
+  coffee.on 'exit', (status) -> callback?() if status is 0
+
+spec = (callback) ->
+  options = ['spec', '--coffee']
+  spec = spawn 'jasmine-node', options
+  spec.stdout.on 'data', (data) -> print data.toString()
+  spec.stderr.on 'data', (data) -> log data.toString(), red
+  spec.on 'exit', (status) -> callback?() if status is 0
