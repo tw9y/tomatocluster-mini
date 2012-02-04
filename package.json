@@ -14,12 +14,13 @@
     "stylus": "*",
     "express": "*",
     "mongoose": "*",
-    "now": "*"
+    "now": "*",
+    "underscore": "*"
   },
   "devDependencies": {
-    "jasmine-node": "*",
+    "mocha": "*",
+    "should": "*",
     "phantom": "*",
-    "underscore": "*",
     "forever": "*"
   }
 }

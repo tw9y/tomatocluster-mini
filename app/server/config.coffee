@@ -1,6 +1,7 @@
 express = require 'express'
 stylus = require 'stylus'
 path = require 'path'
+mongoose = require 'mongoose'
 
 exports.configure = (app) ->
   app.configure ->

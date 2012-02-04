@@ -16,19 +16,19 @@ task 'dev', ->
   build_client true
 
 task 'build', ->
-  build_server -> build_client -> log ':)', green
+  build_server -> build_client -> log 'Done', green
 
 task 'build:client', ->
-  build_client -> log ':)', green
+  build_client -> log 'Done', green
 
 task 'build:server', ->
-  build_server -> log ':)', green
+  build_server -> log 'Done', green
 
 task 'spec', ->
-  build_server -> build_client -> spec -> log ':)', green
+  spec -> log 'Done', green
 
 ###############################
-# Work
+# Le functions!
 ###############################
 log = (message, color, explanation) ->
   console.log color + message + reset + ' ' + (explanation or '')
@@ -58,8 +58,8 @@ build_client = (watch, callback) ->
   coffee.on 'exit', (status) -> callback?() if status is 0
 
 spec = (callback) ->
-  options = ['spec', '--coffee']
-  spec = spawn 'jasmine-node', options
+  options = ['-c', '-R', 'spec', '-r', 'should', 'spec/server/cluster_spec.coffee']
+  spec = spawn 'mocha', options
   spec.stdout.on 'data', (data) -> print data.toString()
   spec.stderr.on 'data', (data) -> log data.toString(), red
   spec.on 'exit', (status) -> callback?() if status is 0

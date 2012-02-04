@@ -1,10 +1,12 @@
 # Requires
 express = require 'express'
 config = require './config'
+mongoose = require 'mongoose'
 
 # Create Server
 app = express.createServer()
 config.configure app
+mongoose.connect app.set 'db'
 
 # Routing
 app.get '/', (req, res) ->
@@ -32,4 +34,4 @@ everyone.now.persist = (model, success) ->
 module.exports.app = app
 
 # Say It
-console.log 'tomatocluster-mini started on port 3000'
+console.log "tomatocluster-mini started on #{app.set 'port'}"

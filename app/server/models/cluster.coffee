@@ -6,4 +6,4 @@ Cluster = new Schema
   created_by: { type: String, required: true }
   last_activity: { type: Date }
 
-mongoose.model 'Cluster', Cluster
+module.exports = mongoose.model 'Cluster', Cluster
