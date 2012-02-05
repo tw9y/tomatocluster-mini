@@ -2,33 +2,32 @@
   var __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
-  jQuery(function() {
-    window.ActivityCollection = (function(_super) {
+  window.ActivityCollection = (function(_super) {
 
-      __extends(ActivityCollection, _super);
+    __extends(ActivityCollection, _super);
 
-      function ActivityCollection() {
-        ActivityCollection.__super__.constructor.apply(this, arguments);
-      }
+    function ActivityCollection() {
+      ActivityCollection.__super__.constructor.apply(this, arguments);
+    }
 
-      ActivityCollection.prototype.model = Activity;
+    ActivityCollection.prototype.model = Activity;
 
-      return ActivityCollection;
+    return ActivityCollection;
 
-    })(Backbone.Collection);
-    return window.PomodoroCollection = (function(_super) {
+  })(Backbone.Collection);
 
-      __extends(PomodoroCollection, _super);
+  window.PomodoroCollection = (function(_super) {
 
-      function PomodoroCollection() {
-        PomodoroCollection.__super__.constructor.apply(this, arguments);
-      }
+    __extends(PomodoroCollection, _super);
 
-      PomodoroCollection.prototype.model = Pomodoro;
+    function PomodoroCollection() {
+      PomodoroCollection.__super__.constructor.apply(this, arguments);
+    }
 
-      return PomodoroCollection;
+    PomodoroCollection.prototype.model = Pomodoro;
 
-    })(Backbone.Collection);
-  });
+    return PomodoroCollection;
+
+  })(Backbone.Collection);
 
 }).call(this);

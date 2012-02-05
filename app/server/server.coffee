@@ -2,6 +2,7 @@
 express = require 'express'
 config = require './config'
 mongoose = require 'mongoose'
+Cluster = require './models/cluster'
 
 # Create Server
 app = express.createServer()
@@ -13,10 +14,15 @@ app.get '/', (req, res) ->
   res.render 'startpage'
 
 app.post '/cluster', (req, res) ->
-  res.redirect '/', 301
+  cluster = new Cluster { created_by: req.connection.remoteAddress }
+  cluster.save (err) ->
+    res.redirect "/cluster/#{cluster.slug}", 301
 
 app.get '/cluster/:id', (req, res) ->
-  res.render 'dashboard'
+  Cluster.findOne { slug: req.params.id }, (err, cluster) ->
+    res.render 'dashboard', cluster if cluster?
+    res.render 'error' if err?
+
 app.listen app.set 'port'
 
 # NowJS, WebSocket Stuff
@@ -24,7 +30,7 @@ nowjs = require 'now'
 everyone = nowjs.initialize app
 
 nowjs.on 'connect', ->
-  console.log @now
+  console.log 'someone joined'
 
 everyone.now.persist = (model, success) ->
   # Store in Mongo

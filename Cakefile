@@ -1,5 +1,7 @@
 {spawn, exec} = require 'child_process'
 {print} = require 'util'
+path = require 'path'
+fs = require 'fs'
 forever = require 'forever'
 
 # ANSI Terminal Colors
@@ -14,6 +16,10 @@ red = '\033[0;31m'
 task 'dev', ->
   build_server true
   build_client true
+  app = new (forever.Monitor) 'lib/server.js',
+    watch: true
+    watchDirectory: 'lib'
+  app.start()
 
 task 'build', ->
   build_server -> build_client -> log 'Done', green
@@ -58,7 +64,11 @@ build_client = (watch, callback) ->
   coffee.on 'exit', (status) -> callback?() if status is 0
 
 spec = (callback) ->
-  options = ['-c', '-R', 'spec', '-r', 'should', 'spec/server/cluster_spec.coffee']
+  options = ['-c', '-R', 'spec']
+  for file in fs.readdirSync path.join __dirname, 'spec/server'
+    options.push path.join 'spec/server', file if file.indexOf('_spec.coffee') > -1
+  for file in fs.readdirSync path.join __dirname, 'spec/client'
+    options.push path.join 'spec/client', file if file.indexOf('_spec.coffee') > -1
   spec = spawn 'mocha', options
   spec.stdout.on 'data', (data) -> print data.toString()
   spec.stderr.on 'data', (data) -> log data.toString(), red

@@ -8,4 +8,4 @@ Activity = new Schema
   cluster: { type: ObjectId, required: true }
   pomodoros: { type: [Pomodoro] }
 
-mongoose.model 'Activity', Activity
+module.exports = mongoose.model 'Activity', Activity

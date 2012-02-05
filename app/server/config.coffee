@@ -15,7 +15,7 @@ exports.configure = (app) ->
     app.set 'view engine', 'jade'
 
   app.configure 'test', ->
-    app.use express.errorHandler()
+    app.use express.errorHandler { dumpExceptions: true, showStack: true }
     app.set 'db', 'mongodb://localhost/tomatocluster-mini-test'
     app.set 'port', 3001
 

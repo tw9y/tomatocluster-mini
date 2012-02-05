@@ -1,4 +1,4 @@
-require './spec_helper'
+require '../spec_helper'
 Activity = require '../../app/server/models/activity'
 
 describe 'Activity', ->

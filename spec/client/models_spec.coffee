@@ -1,5 +1,4 @@
+require '../spec_helper'
 
 describe "Pomodoro", ->
-
-  it "should have defaults", ->
-    expect(1+2).toEqual(3)
+  it "should have defaults"

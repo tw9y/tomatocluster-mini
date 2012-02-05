@@ -1,86 +1,86 @@
-jQuery ->
-  #####################
-  # Focus View        #
-  #####################
-  class window.FocusView extends Backbone.View
+#####################
+# Focus View        #
+#####################
+class window.FocusView extends Backbone.View
 
-  #####################
-  # Activity View
-  #####################
-  class window.ActivityView extends Backbone.View
-    tagName: 'li'
-    className: 'activity'
-    template: _.template $('#activity-template').html()
+#####################
+# Activity View
+#####################
+class window.ActivityView extends Backbone.View
+  tagName: 'li'
+  className: 'activity'
+  template: _.template $('#activity-template').html()
 
-    initialize: ->
-      @countDownEnds = new Date().add(25).minutes()
+  initialize: ->
+    @countDownEnds = new Date().add(25).minutes()
 
-    tick: ->
-      totalSecondsLeft = Math.floor((@countDownEnds - Date.now()) / 1000)
-      minutesLeft = Math.floor(totalSecondsLeft / 60)
-      secondsLeft = Math.floor(totalSecondsLeft % 60)
-      timeLeft = if minutesLeft < 10 then '0' + minutesLeft else minutesLeft
-      timeLeft += ':'
-      timeLeft += if secondsLeft < 10 then '0' + secondsLeft else secondsLeft
-      @$('time').html timeLeft
+  tick: ->
+    totalSecondsLeft = Math.floor((@countDownEnds - Date.now()) / 1000)
+    minutesLeft = Math.floor(totalSecondsLeft / 60)
+    secondsLeft = Math.floor(totalSecondsLeft % 60)
+    timeLeft = if minutesLeft < 10 then '0' + minutesLeft else minutesLeft
+    timeLeft += ':'
+    timeLeft += if secondsLeft < 10 then '0' + secondsLeft else secondsLeft
+    @$('time').html timeLeft
 
-      @tickTimeout = setTimeout =>
-        @tick()
-      , 1000
-
-    stopTicking: ->
-      clearTimeout @tickTimeout
-
-    toggleTimer: ->
-      @$('time').animate { top: '-30px' }, 400
+    @tickTimeout = setTimeout =>
       @tick()
+    , 1000
 
-    render: ->
-      $(@el).html @template @model.toJSON()
-      @
+  stopTicking: ->
+    clearTimeout @tickTimeout
 
-  #####################
-  # Pomodoro View
-  #####################
-  class window.PomodoroView extends Backbone.View
-    tagName: 'li'
-    className: 'pomodoro'
-    template: _.template $('#pomodoro-template').html()
+  toggleTimer: ->
+    @$('time').animate { top: '-30px' }, 400
+    @tick()
 
-    render: ->
-      $(@el).html @template @model.toJSON()
-      @
+  render: ->
+    $(@el).html @template @model.toJSON()
+    @
 
-  #####################
-  # History View
-  #####################
-  class window.HistoryView extends Backbone.View
+#####################
+# Pomodoro View
+#####################
+class window.PomodoroView extends Backbone.View
+  tagName: 'li'
+  className: 'pomodoro'
+  template: _.template $('#pomodoro-template').html()
 
-  #####################
-  # Dashboard View
-  #####################
-  class window.DashboardView extends Backbone.View
-    el: $ '#dashboard'
+  render: ->
+    $(@el).html @template @model.toJSON()
+    @
 
-    initialize: ->
-      @activities = new ActivityCollection
-      @activities.bind 'add', @addActivity, @
+#####################
+# History View
+#####################
+class window.HistoryView extends Backbone.View
 
-    addActivity: (activity) ->
-      view = new ActivityView { model: activity }
-      @$('#activities').append view.render().el
-      view.toggleTimer()
+#####################
+# Dashboard View
+#####################
+class window.DashboardView extends Backbone.View
+  el: $ '#dashboard'
 
-    recieveActivity: (activity) ->
-      @activities.add activity
+  initialize: ->
+    @activities = new ActivityCollection
+    @activities.bind 'add', @addActivity, @
 
-    createActivity: ->
-      @activities.create {}
+  addActivity: (activity) ->
+    view = new ActivityView { model: activity }
+    @$('#activities').append view.render().el
+    view.toggleTimer()
 
-    events:
-      "click button": "createActivity"
+  recieveActivity: (activity) ->
+    @activities.add activity
 
-  # Create the App
+  createActivity: ->
+    @activities.create {}
+
+  events:
+    "click button": "createActivity"
+
+# Create the App
+jQuery ->
   dashBoard = new DashboardView
   now.recieveActivity = (activity) ->
     dashBoard.addActivity(new Activity(activity))
