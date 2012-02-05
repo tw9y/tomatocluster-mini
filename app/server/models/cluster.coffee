@@ -8,7 +8,8 @@ Cluster = new Schema
   last_activity: { type: Date }
 
 Cluster.method 'generate_slug', ->
-  Math.round(new Date().valueOf() * Math.random()).toString()
+  time = Math.round(new Date().valueOf() * Math.random()).toString()
+  new Buffer(time).toString('base64')
 
 Cluster.pre 'save', (next) ->
   @slug = @generate_slug() unless @slug?
