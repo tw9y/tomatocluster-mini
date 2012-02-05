@@ -1,25 +1,24 @@
-header(role='banner')
-  .content
-    h1: a(href='/') Tomato Cluster
-    nav
-      ul
-        li: a(href='/') About
+header
+
 article
-  h1 Collaborative Pomodoros
+  h1 Tomato Cluster
   p
     | The Pomodoro Technique is an awesome tool
-    | to increase your productivity. We also know
-    | that you've probably tried a dozen project 
-    | management systems before. That's why we made another
-    | one!
+    | to increase your productivity. You have probably tried a dozen project
+    | management systems before. How long do you keep on using them? A week?
+    | That's why we made yet another one...
   p
     | To get going just press the <i>huge</i> button below
     | to create a new cluster, send the url to a couple
     | of friends. That's it... everything else should explain
-    | itself.
+    | itself.
 
   form(method='post', action='/cluster')
-    button.huge(type='submit') 
+    button.huge(type='submit')
       | Create a Cluster
-      span and do some shit
-section
+      span And enjoy being less disturbed
+    a(href="#more")
+      | Nope, need know more before pressing any buttons
+
+section#more
+  | hello

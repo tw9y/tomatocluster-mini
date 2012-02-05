@@ -4,7 +4,7 @@ Schema = mongoose.Schema
 Cluster = new Schema
   created_at: { type: Date, default: Date.now }
   created_by: { type: String, required: true }
-  slug: { type: String, index: true }
+  slug: { type: String, unique: true }
   last_activity: { type: Date }
 
 Cluster.method 'generate_slug', ->

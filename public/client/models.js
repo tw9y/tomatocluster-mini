@@ -46,7 +46,7 @@
   })(Backbone.Model);
 
   Backbone.sync = function(method, model, options) {
-    return now.persist(model, options.success);
+    return now.save(method, model, options.success);
   };
 
 }).call(this);

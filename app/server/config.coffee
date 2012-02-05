@@ -1,16 +1,15 @@
 express = require 'express'
 stylus = require 'stylus'
 path = require 'path'
-mongoose = require 'mongoose'
 
 exports.configure = (app) ->
   app.configure ->
     app.use express.bodyParser()
     app.use express.cookieParser()
-    app.use express.session { secret: 'your secret' }
+    app.use express.session { secret: 'super-secret-secret!' }
     app.use stylus.middleware
-      src: __dirname
-      dest: path.join __dirname, '/../public'
+      src: path.join __dirname, '../app'
+      dest: path.join __dirname, '../public'
     app.use express.static path.join __dirname, '/../public'
     app.set 'view engine', 'jade'
 

@@ -20,4 +20,4 @@ class window.Pomodoro extends Backbone.Model
 
 # Hookup the Sync method to the now callback
 Backbone.sync = (method, model, options) ->
-  now.persist model, options.success
+  now.save method, model, options.success
