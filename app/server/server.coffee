@@ -22,11 +22,8 @@ app.post '/cluster', (req, res) ->
 
 app.get '/cluster/:id', (req, res) ->
   Cluster.findOne { slug: req.params.id }, (err, cluster) ->
-    if err?
-      res.render 'error'
-      res.end()
+    res.render 'error' if err? or !cluster?
     res.render 'dashboard', cluster if cluster?
-    res.render 'error' if err?
 
 # Start listening
 app.listen app.set 'port'

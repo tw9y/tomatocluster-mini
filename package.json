@@ -21,6 +21,7 @@
     "mocha": "*",
     "should": "*",
     "phantom": "*",
-    "forever": "*"
+    "forever": "*",
+    "backbone": "*"
   }
 }
