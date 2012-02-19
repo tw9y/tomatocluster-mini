@@ -15,3 +15,12 @@ describe "Cluster", ->
     @cluster.save (error) =>
       @cluster.slug.should.be.ok
       done()
+
+  it "only generates a slug the first time it's saved", (done) ->
+    @cluster.created_by = '127.0.0.1'
+    @cluster.save (error) =>
+      slug = @cluster.slug
+
+      @cluster.save (error) =>
+        @cluster.slug.should.equal slug
+        done()

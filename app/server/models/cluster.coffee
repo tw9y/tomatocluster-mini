@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+crypto = require 'crypto'
 Schema = mongoose.Schema
 
 Cluster = new Schema
@@ -8,8 +9,8 @@ Cluster = new Schema
   last_activity: { type: Date }
 
 Cluster.method 'generate_slug', ->
-  time = Math.round(new Date().valueOf() * Math.random()).toString()
-  new Buffer(time).toString('base64')
+  identifier = new Date().valueOf() + @created_by
+  crypto.createHmac('md5', identifier).digest('hex')
 
 Cluster.pre 'save', (next) ->
   @slug = @generate_slug() unless @slug?

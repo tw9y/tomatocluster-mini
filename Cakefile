@@ -21,6 +21,10 @@ task 'dev', ->
     watchDirectory: 'lib'
   app.start()
 
+task 'prod', ->
+  build_server true
+  build_client true
+
 task 'build', ->
   build_server -> build_client -> log 'Done', green
 
