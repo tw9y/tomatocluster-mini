@@ -26,9 +26,10 @@ body {
   margin: 60px 0 0 0;
   text-align: center;
 }
-.marketing h1 {
-  font-size: 40px;
-  font-weight: 300;
+.marketing h2 {
+  font-family: 'Alfa Slab One';
+  font-size: 35px;
+  font-weight: normal;
   margin-bottom: 20px;
 }
 .marketing p {
