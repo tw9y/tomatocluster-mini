@@ -3,14 +3,17 @@ stylus = require 'stylus'
 path = require 'path'
 
 exports.configure = (app) ->
+  public = path.join __dirname, '../public'
+
   app.configure ->
     app.use express.bodyParser()
     app.use express.cookieParser()
     app.use express.session { secret: 'super-secret-secret!' }
-    app.use stylus.middleware
+    app.use express.compiler
       src: path.join __dirname, '../app'
-      dest: path.join __dirname, '../public'
-    app.use express.static path.join __dirname, '/../public'
+      dest: public
+      enable: ['less']
+    app.use express.static public
     app.set 'view engine', 'jade'
 
   app.configure 'test', ->

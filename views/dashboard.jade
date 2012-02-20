@@ -1,24 +1,37 @@
-header(role='banner')
-  strong tomatocluster
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container-fluid
+      a.btn.btn-navbar(data-toogle='collapse', data-targets='.nav-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand(href='/') tomato cluster
+      .nav-collapse
+        p
+          a.btn.btn-primary
+            i.icon-time.icon-white
+            | Start Activity
+          a.btn.btn-danger
+            i.icon-trash.icon-white
+            | Stop Activity
+          a.btn.btn-warning
+            i.icon-heart.icon-white
+            | Short Break
+          a.btn.btn-warning
+            i.icon-heart.icon-white
+            | Long Break
 
-#dashboard
-  h1 Dashboard
-  ul#activities
-  ul#history
 
-  footer#actions
-    button Start Activity
+.container-fluid
+  .row-fluid
+    .span4
+      h2 You
+      ul#you
+    .span8
+      h2 Cluster
+      ul#cluster
+
+script#activity-template(type='text/html')
+
 
 include mustash_templates
-
-script(src='/nowjs/now.js')
-script(src='http://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js')
-script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-script(src='/lib/jquery.reveal.js')
-script(src='/lib/jquery.transition.min.js')
-script(src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.2/underscore-min.js')
-script(src='http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.5.3/backbone-min.js')
-script(src='/client/router.js')
-script(src='/client/models.js')
-script(src='/client/collections.js')
-script(src='/client/views.js')

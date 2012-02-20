@@ -22,8 +22,7 @@ task 'dev', ->
   app.start()
 
 task 'prod', ->
-  build_server true
-  build_client true
+  console.log 'not yet'
 
 task 'build', ->
   build_server -> build_client -> log 'Done', green
@@ -31,8 +30,8 @@ task 'build', ->
 task 'build:client', ->
   build_client -> log 'Done', green
 
-task 'build:server', ->
-  build_server -> log 'Done', green
+task 'build:css', ->
+  console.log 'hello'
 
 task 'spec', ->
   spec -> log 'Done', green
@@ -59,7 +58,7 @@ build_client = (watch, callback) ->
   if typeof watch is 'function'
     callback = watch
     watch = false
-  options = ['-c', '-o', 'public/client', 'app/client']
+  options = ['-c', '-o', 'public/javascripts', 'app/client']
   options.unshift '-w' if watch
 
   coffee = spawn 'coffee', options

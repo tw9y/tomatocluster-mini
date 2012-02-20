@@ -1,0 +1,23 @@
+body {
+  padding-top: 40px;
+}
+.navbar .brand {
+  font-family: 'Lobster Two';
+}
+.navbar .brand .nav li {
+  margin: 0 5px 0 0;
+}
+#welcome {
+  text-align: center;
+  margin: 30px 0 0 0;
+}
+#welcome h1 {
+  font-family: 'Alfa Slab One';
+  font-weight: normal;
+  font-size: 70px;
+  line-height: 70px;
+}
+#welcome button {
+  padding: 15px 50px;
+  margin: 0 0 10px;
+}

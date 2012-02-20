@@ -1,14 +1,7 @@
 @font-face {
-  font-family: 'Logo';
+  font-family: 'LobsterTwo';
   src: url("/fonts/LobsterTwo-Regular-webfont.eot");
   src: url("/fonts/LobsterTwo-Regular-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/LobsterTwo-Regular-webfont.woff") format('woff'), url("/fonts/LobsterTwo-Regular-webfont.ttf") format('truetype'), url("/fonts/LobsterTwo-Regular-webfont.svg#LobsterTwoRegular") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Primary';
-  src: url("/fonts/nobile-webfont.eot");
-  src: url("/fonts/nobile-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/nobile-webfont.woff") format('woff'), url("/fonts/nobile-webfont.ttf") format('truetype'), url("/fonts/nobile-webfont.svg#NobileRegular") format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,123 +12,9 @@
   src: url("/fonts/AlfaSlabOne-Regular-OTF-webfont.eot");
   src: url("/fonts/AlfaSlabOne-Regular-OTF-webfont.eot?#iefix") format('embedded-opentype'), url("/fonts/AlfaSlabOne-Regular-OTF-webfont.woff") format('woff'), url("/fonts/AlfaSlabOne-Regular-OTF-webfont.ttf") format('truetype'), url("/fonts/AlfaSlabOne-Regular-OTF-webfont.svg#AlfaSlabOneRegular") format('svg');
 }
-button {
-  -moz-box-shadow: 0 1px 2px #000;
-  -webkit-box-shadow: 0 1px 2px #000;
-  box-shadow: 0 1px 2px #000;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  background-color: #5e0101;
-  background-image: -ms-linear-gradient(top, #ab0202 0%, #5e0101 100%);
-  background-image: -moz-linear-gradient(top, #ab0202 0%, #5e0101 100%);
-  background-image: -o-linear-gradient(top, #ab0202 0%, #5e0101 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ab0202), color-stop(1, #5e0101));
-  background-image: -webkit-linear-gradient(top, #ab0202 0%, #5e0101 100%);
-  background-image: linear-gradient(top, #ab0202 0%, #5e0101 100%);
-  cursor: pointer;
-  border: none;
-  color: #fff;
-  padding: 10px 30px;
-  font-size: 16px;
-  text-shadow: 0 1px 2px #000;
-}
-button.huge {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -moz-box-shadow: 0 1px 3px #000;
-  -webkit-box-shadow: 0 1px 3px #000;
-  box-shadow: 0 1px 3px #000;
-  text-shadow: 0 1px 3px #000;
-  font-size: 24px;
-  padding: 15px 50px;
-}
-button.huge span {
-  display: block;
-  font-size: 12px;
-  color: #b1b1b1;
-}
-button:hover {
-  background-color: #780101;
-  background-image: -ms-linear-gradient(top, #cc0202 0%, #780101 100%);
-  background-image: -moz-linear-gradient(top, #cc0202 0%, #780101 100%);
-  background-image: -o-linear-gradient(top, #cc0202 0%, #780101 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #cc0202), color-stop(1, #780101));
-  background-image: -webkit-linear-gradient(top, #cc0202 0%, #780101 100%);
-  background-image: linear-gradient(top, #cc0202 0%, #780101 100%);
-}
-body {
-  text-align: center;
-  color: #b1b1b1;
-  background: #343434;
-  font-family: 'Primary', 'Sans Serif';
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-}
-h1 {
-  color: #fff;
-  font-size: 30px;
-  text-shadow: 0 2px 1px #000;
-}
-a {
-  color: #fff;
-  text-decoration: underline;
-}
-p {
-  line-height: 20px;
-  margin: 0 0 10px 0;
-}
-p i {
-  color: #d8d8d8;
-}
-article,
-section header,
-footer {
-  display: block;
-}
-time {
-  font-family: 'Monaco', 'Consolas';
-}
-header {
-  height: 40px;
-  background: #222;
-  border-bottom: solid 1px #3e3e3e;
-}
-header.start-page {
-  padding: 5px 20px;
-}
-header.start-page .logo {
-  font-size: 40px;
-}
-header.start-page .logo span {
-  font-size: 20px;
-}
-article {
-  width: 960px;
-  margin: 0 auto;
-}
-article h1 {
+#welcome h1 {
   font-family: 'AlfaSlabOneRegular';
-  font-size: 60px;
-  margin: 40px 0 15px 0;
   font-weight: normal;
-  text-shadow: 2px 2px 2px #000;
-}
-article p {
-  width: 400px;
-  margin: 0 auto 30px;
-}
-article button {
-  width: 400px;
-}
-article a {
-  display: block;
-  margin: 15px 0 0;
-}
-#more {
-  background: #ebebeb;
-  margin: 500px 0 0;
-  height: 500px;
+  font-size: 50px;
+  text-align: center;
 }

@@ -1,24 +1,35 @@
-header
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container-fluid
+      a.btn.btn-navbar(data-toogle='collapse', data-targets='.nav-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand(href='/') tomato cluster
 
-article
-  h1 Tomato Cluster
-  p
-    | The Pomodoro Technique is an awesome tool
-    | to increase your productivity. You have probably tried a dozen project
-    | management systems before. How long do you keep on using them? A week?
-    | That's why we made yet another one...
-  p
-    | To get going just press the <i>huge</i> button below
-    | to create a new cluster, send the url to a couple
-    | of friends. That's it... everything else should explain
-    | itself.
+.container-fluid
+  #welcome.hero-unit
+    h1 Tomato Cluster
+    .row-fluid
+      .span3 &nbsp;
+      .span6
+        p
+          | The Pomodoro Technique is an awesome tool
+          | to increase your <a href=""><strong>productivity</strong></a>. You have probably tried a dozen project
+          | management systems before. How long do you keep on using them? A week?
+          | So, we created a <a href=""><strong>disturbance management system</strong></a>
+        p
+          | To get going just press the <strong>huge</strong> button below
+          | to create a new cluster, send the url to a couple
+          | of friends. That's it... everything else should explain
+          | itself.
+        form(method='post', action='/cluster')
+          .row-fluent
+            button.btn.btn-large.btn-primary(type='submit')
+              | Create a Cluster
+          .row-fluent
+            a(href="#more")
+              | Nope, need know more before pressing any buttons
 
-  form(method='post', action='/cluster')
-    button.huge(type='submit')
-      | Create a Cluster
-      span And enjoy being less disturbed
-    a(href="#more")
-      | Nope, need know more before pressing any buttons
+      .span3 &nbsp;
 
-section#more
-  | hello

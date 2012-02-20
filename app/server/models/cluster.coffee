@@ -9,8 +9,7 @@ Cluster = new Schema
   last_activity: { type: Date }
 
 Cluster.method 'generate_slug', ->
-  identifier = new Date().valueOf() + @created_by
-  crypto.createHmac('md5', identifier).digest('hex')
+  new Date().valueOf().toString()
 
 Cluster.pre 'save', (next) ->
   @slug = @generate_slug() unless @slug?
