@@ -1,6 +1,6 @@
 .navbar.navbar-fixed-top
   .navbar-inner
-    .container-fluid
+    .container
       a.btn.btn-navbar(data-toogle='collapse', data-targets='.nav-collapse')
         span.icon-bar
         span.icon-bar
@@ -22,16 +22,14 @@
             | Long Break
 
 
-.container-fluid
-  .row-fluid
+.container
+  .row
     .span4
       h2 You
       ul#you
+        !=partial('partials/activity')
     .span8
       h2 Cluster
       ul#cluster
 
 script#activity-template(type='text/html')
-
-
-include mustash_templates

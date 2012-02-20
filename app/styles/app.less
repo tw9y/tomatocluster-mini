@@ -1,5 +1,20 @@
 body {
-  padding-top: 40px;
+  padding: 40px 0;
+}
+
+.hero-unit {
+  h1 {
+    font-family: 'Alfa Slab One';
+    font-weight: normal;
+    font-size: 70px;
+    line-height: 70px;
+  }
+
+  button {
+    font-size: 25px;
+    padding: 15px 50px;
+    margin: 15px 0 5px;
+  }
 }
 
 .navbar .brand {
@@ -14,18 +29,6 @@ body {
   text-align: center;
   margin: 30px 0 0 0;
 
-  h1 {
-    font-family: 'Alfa Slab One';
-    font-weight: normal;
-    font-size: 70px;
-    line-height: 70px;
-  }
-
-  button {
-    font-size: 25px;
-    padding: 15px 50px;
-    margin: 0 0 10px;
-  }
 }
 
 .marketing {
@@ -44,10 +47,8 @@ body {
   }
 }
 
-footer {
-  color: #fff;
-  margin: 30px 0 0 0;
-  background: #2c2c2c;
-  padding: 10px 0;
-  text-align: center;
-}
+@import "/app/styles/smartphone";
+@import "/app/styles/portrait-tablet";
+@import "/app/styles/landscape-tablet";
+@import "/app/styles/default";
+@import "/app/styles/large-display";

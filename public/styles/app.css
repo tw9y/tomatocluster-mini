@@ -1,5 +1,16 @@
 body {
-  padding-top: 40px;
+  padding: 40px 0;
+}
+.hero-unit h1 {
+  font-family: 'Alfa Slab One';
+  font-weight: normal;
+  font-size: 70px;
+  line-height: 70px;
+}
+.hero-unit button {
+  font-size: 25px;
+  padding: 15px 50px;
+  margin: 15px 0 5px;
 }
 .navbar .brand {
   font-family: 'Lobster Two';
@@ -10,17 +21,6 @@ body {
 #welcome {
   text-align: center;
   margin: 30px 0 0 0;
-}
-#welcome h1 {
-  font-family: 'Alfa Slab One';
-  font-weight: normal;
-  font-size: 70px;
-  line-height: 70px;
-}
-#welcome button {
-  font-size: 25px;
-  padding: 15px 50px;
-  margin: 0 0 10px;
 }
 .marketing {
   margin: 60px 0 0 0;
@@ -35,10 +35,37 @@ body {
 .marketing p {
   text-align: left;
 }
-footer {
-  color: #fff;
-  margin: 30px 0 0 0;
-  background: #2c2c2c;
-  padding: 10px 0;
-  text-align: center;
+@media (max-width: 480px) {
+  .hero-unit {
+    padding: 20px;
+  }
+  .hero-unit h1 {
+    font-size: 30px;
+    line-height: 30px;
+    margin: 0 0 10px;
+  }
+  .hero-unit p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .hero-unit button {
+    padding: 15px 30px;
+    font-size: 20px;
+  }
+  .marketing h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  
+}
+@media (min-width: 769px) and (max-width: 980px) {
+  
+}
+@media (min-width: 981px) and (max-width: 1200px) {
+  
+}
+@media (min-width: 1201px) {
+  
 }
