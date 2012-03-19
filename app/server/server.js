@@ -2,7 +2,6 @@
 var express = require('express'),
     mongoose = require('mongoose'),
     config = require('./config'),
-    realtime = require('./realtime'),
     Cluster = require('./models/cluster');
 
 // Create Server
@@ -33,7 +32,6 @@ app.get('/cluster/:id', function(req, res) {
 
 // Start listening
 app.listen(app.set('port'));
-realtime.initialize(app);
 module.exports.app = app;
 
 console.log('tomatocluster-mini started on ' + app.set('port'));
