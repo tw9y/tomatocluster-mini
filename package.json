@@ -15,6 +15,7 @@
     "stylus": "*",
     "express": "*",
     "mongoose": "*",
+    "faye": "*",
     "now": "*",
     "underscore": "*"
   },
