@@ -18,6 +18,7 @@ var bold = '\033[0;1m',
  *********************/
 desc('Runs the specs');
 task('default', [], function() {
+  spec();
 });
 
 desc('Starts a dev environment');
@@ -27,9 +28,7 @@ task('dev', [], function() {
 
 desc('Runs the Specs');
 task('spec', [], function() {
-  spec(function() {
-    log('I R done', green);
-  });
+  spec();
 });
 
 /**********************
