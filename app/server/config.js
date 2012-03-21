@@ -10,7 +10,7 @@ exports.configure = function(app) {
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'super-secret' }));
     app.use(express.compiler({
-      src: path.join(__dirname, '../app'),
+      src: __dirname,
       dest: public,
       enable: ['less']
     }));
@@ -24,7 +24,7 @@ exports.configure = function(app) {
     app.set('port', 3001);
   });
 
-  app.configure('developer', function() {
+  app.configure('development', function() {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.set('db', 'mongodb://localhost/tomatocluster-mini-dev');
     app.set('port', 3000);
