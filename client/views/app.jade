@@ -2,17 +2,30 @@
 html(lang="en")
   head
     != SocketStream
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Alfa+Slab+One|Lobster+Two')
     meta(charset="utf-8")
-    title Welcome
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Tomato Cluster
   body
-    #content
-      a(href='https://github.com/socketstream/socketstream')
-        img(src='/images/logo.png', alt='SocketStream Logo', width=160, height=160)
-      h1 Welcome to your new realtime app!
-      
-      // QUICK CHAT DEMO
-      form#demo(onsubmit='return false')
-        h3 Quick Chat Demo
-        h5 Open this page in multiple tabs or browsers and type a message below
-        #chatlog
-        input(id='myMessage', type='text', autocomplete='off')
+    .container-fluent
+      section.hero-unit
+        .row-fluent
+          .span6.offset2
+          h1 Tomato Cluster
+          p
+            | The Pomodoro Technique is an awesome tool
+            | to increase your <a href=""><strong>productivity</strong></a>. You have probably tried a dozen project
+            | management systems before. How long did you keep on using them? A week?
+            | So, we created a <a href=""><strong>disturbance management system</strong></a>
+          p
+            | To get going just press the <strong>huge</strong> button below
+            | to create a new cluster, send the url to a couple
+            | of friends. That's it... everything else should explain
+            | itself.
+          form(method='post', action='/cluster')
+            .row-fluent
+              button.btn.btn-large.btn-primary(type='submit')
+                | Create a Cluster
+            .row-fluent
+              a(href="#more")
+                | Nope, need know more before pressing any buttons
