@@ -1,5 +1,3 @@
-// My SocketStream app
-
 var http = require('http')
   , ss = require('socketstream');
 
