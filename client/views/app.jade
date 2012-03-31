@@ -7,7 +7,11 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Tomato Cluster
   body
-    .container-fluent
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+
+    #start.container-fluent
       section.hero-unit
         .row-fluent
           .span6.offset2
@@ -22,10 +26,8 @@ html(lang="en")
             | to create a new cluster, send the url to a couple
             | of friends. That's it... everything else should explain
             | itself.
-          form(method='post', action='/cluster')
-            .row-fluent
-              button.btn.btn-large.btn-primary(type='submit')
-                | Create a Cluster
-            .row-fluent
-              a(href="#more")
-                | Nope, need know more before pressing any buttons
+
+          button.btn.btn-large.btn-primary(type='button')
+            | Create a Cluster
+          a(href="#more")
+            | Nope, need know more before pressing any buttons

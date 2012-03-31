@@ -2,6 +2,7 @@
 var print = require('util').print,
     path = require('path'),
     fs = require('fs'),
+    forever = require('forever'),
     Mocha = require('mocha');
 
 // ANSI Terminal Colors
@@ -23,6 +24,11 @@ task('spec', [], function() {
   spec();
 });
 
+desc('Starts a development server using Forever');
+task('dev', [], function() {
+  dev();
+});
+
 /**********************
  * Le functions
  *********************/
@@ -33,4 +39,12 @@ function spec() {
   var runner = mocha.run(function() {
     console.log("Done");
   });
+}
+
+function dev() {
+  var app = new forever.Monitor('app.js', {
+    watch: true,
+    watchDirectory: 'server'
+  });
+  app.start();
 }
