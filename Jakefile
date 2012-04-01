@@ -35,7 +35,7 @@ task('dev', [], function() {
 function spec() {
   var mocha = new Mocha;
   mocha.reporter('spec').ui('bdd');
-  mocha.addFile('spec/server/models/activity_spec.js');
+  mocha.addFile('spec/server/models/cluster_spec.js');
   var runner = mocha.run(function() {
     console.log("Done");
   });

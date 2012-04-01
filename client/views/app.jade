@@ -10,8 +10,11 @@ html(lang="en")
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
+          .nav-collapse
+            ul.nav
+              li: a(href='') Start
 
-    #start.container-fluent
+    #start.container-fluent.view
       section.hero-unit
         .row-fluent
           .span6.offset2
@@ -33,5 +36,5 @@ html(lang="en")
             | Nope, need know more before pressing any buttons
 
 
-    #cluster
-      h1 Tjohej
+    #cluster.view
+      button.btn.btn-large.btn-primary Create Activity

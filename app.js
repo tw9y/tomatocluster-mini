@@ -1,5 +1,6 @@
 var http = require('http')
-  , ss = require('socketstream');
+  , ss = require('socketstream')
+  , mongoose = require('mongoose');
 
 // Define a single-page client
 ss.client.define('main', {
@@ -18,8 +19,15 @@ ss.client.formatters.add(require('ss-jade'));
 ss.client.formatters.add(require('ss-stylus'));
 ss.client.templateEngine.use(require('ss-hogan'));
 
-// Minimize and pack assets if you type: SS_ENV=production node app.js
-if (ss.env == 'production') ss.client.packAssets();
+// Configuration
+if (ss.env == 'production') {
+  ss.client.packAssets();
+  mongoose.connect('?');
+}
+
+if (ss.env == 'development') {
+  mongoose.connect('mongodb://localhost/tomocluster-dev');
+}
 
 // Start web server
 var server = http.Server(ss.http.middleware);

@@ -8,10 +8,12 @@
   "dependencies": {
     "ss-stylus": "0.1.x",
     "ss-jade": "0.1.x",
-    "ss-hogan": "0.1.x"
+    "ss-hogan": "0.1.x",
+    "mongoose": "2.5.x"
   },
   "devDependencies": {
     "mocha": "1.0.x",
+    "should": "0.6.x",
     "forever": "0.8.x"
   }
 }

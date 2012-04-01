@@ -6,18 +6,34 @@ module.exports = {
    */
   AppRouter: Backbone.Router.extend({
 
+    initialize: function() {
+      clusterView = new views.ClusterView({ el: $('#cluster') });
+      startView = new views.StartView({ el: $('#start') });
+    },
+
     routes: {
-      "": "startRoute",
-      "cluster/:id": "clusterRoute",
-      "*splat": "defaultRoute"
+      ""             : "startRoute",
+      "cluster/:id"  : "clusterRoute",
+      "*splat"       : "defaultRoute"
     },
 
+    /**
+     * The Cluster route are triggered when
+     * a person joins a cluster
+     */
     clusterRoute: function(id) {
-      if (!window.clusterView) window.clusterView = new views.ClusterView();
+      ss.rpc('cluster.join', id, function(error) {
+        if (error) return alert('Error occured... sowwy!');
+        clusterView.render();
+      });
     },
 
+    /**
+     * The Start route are triggered when loading the
+     * root page
+     */
     startRoute: function() {
-      if (!window.startView) window.startView = new views.StartView();
+      startView.render();
     },
 
     defaultRoute: function(splat) {

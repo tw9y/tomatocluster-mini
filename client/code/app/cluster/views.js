@@ -1,5 +1,5 @@
-var models = require('./models'),
-    collections = require('./collections');
+var models = require('./models')
+  , collections = require('./collections');
 
 module.exports = {
 
@@ -7,7 +7,8 @@ module.exports = {
    * Activity View
    */
   ActivityView: Backbone.View.extend({
-    enterFocusMode: function() {
+    render: function() {
+      return this;
     }
   }),
 
@@ -16,17 +17,23 @@ module.exports = {
    * Handles all UI interaction in the Cluster
    */
   ClusterView: Backbone.View.extend({
-    el: $('#cluster'),
 
     initialize: function() {
       this.activities = new collections.ActivityCollection();
     },
 
     events: {
+      "click button": "createActivity"
     },
 
-    leave: function(evt) {
-      ss.rpc('cluster.leave');
+    createActivity: function(evt) {
+      ss.rpc('cluster.activity.create', function() {
+      });
+    },
+
+    render: function() {
+      $(this.el).show();
+      return this;
     }
   }),
 
@@ -34,7 +41,6 @@ module.exports = {
    * Start View
    */
   StartView: Backbone.View.extend({
-    el: $('#start'),
 
     events: {
       "click button": "createCluster"
@@ -46,6 +52,11 @@ module.exports = {
         // Navigate to the newly created cluster
         app.navigate('cluster/'+id, { trigger: true });
       });
+    },
+
+    render: function() {
+      $(this.el).show();
+      return this;
     }
   })
 };
