@@ -6,7 +6,7 @@ module.exports = {
    */
   ActivityCollection: Backbone.Model.extend({
 
-    model: models.Activity
+    model: models.Activity,
 
     initialize: function() {
       ss.event.on('activityCreated', function(activity) {
