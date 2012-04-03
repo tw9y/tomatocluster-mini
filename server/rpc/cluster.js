@@ -22,9 +22,10 @@ exports.actions = function(req, res, ss) {
       // Resets all channels, atm you can only subscribe in one
       // channel.
       req.session.channel.reset();
-      Cluster.find({ _id: clusterId }, function(error, cluster) {
-        if (error) return res("An error occured");
+      Cluster.findById(clusterId, function(error, cluster) {
+        if (error) return res(error);
         if (!cluster) return res("Unable to join cluster, because it doesn't exist");
+        req.session.cluster = cluster._id.toString();
         req.session.channel.subscribe(clusterId);
         res();
       });

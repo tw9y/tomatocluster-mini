@@ -33,7 +33,9 @@ module.exports = {
     },
 
     createActivity: function(evt) {
-      ss.rpc('cluster.activity.create', function() {
+      var activity = new models.Activity({ title: 'Demo' });
+      ss.rpc('cluster.activity.create', activity.toJSON(), function(error) {
+        if (error) return alert("An error occured");
       });
     },
 
