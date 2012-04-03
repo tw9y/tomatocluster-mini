@@ -5,7 +5,6 @@ module.exports = {
    * Activity Collection
    */
   ActivityCollection: Backbone.Model.extend({
-
     model: models.Activity,
 
     initialize: function() {
@@ -13,5 +12,9 @@ module.exports = {
 
       });
     }
+  }),
+
+  UserCollection: Backbone.Model.extend({
+    model: models.User
   })
 };

@@ -13,6 +13,12 @@ module.exports = {
   }),
 
   /**
+   * View that handles the navigation
+   */
+  NavigationView: Backbone.View.extend({
+  }),
+
+  /**
    * Cluster View
    * Handles all UI interaction in the Cluster
    */
@@ -31,9 +37,12 @@ module.exports = {
       });
     },
 
-    render: function() {
+    hide: function(options) {
+      $(this.el).hide();
+    },
+
+    show: function(options) {
       $(this.el).show();
-      return this;
     }
   }),
 
@@ -54,9 +63,12 @@ module.exports = {
       });
     },
 
-    render: function() {
+    hide: function(options) {
+      $(this.el).hide();
+    },
+
+    show: function(options) {
       $(this.el).show();
-      return this;
     }
   })
 };

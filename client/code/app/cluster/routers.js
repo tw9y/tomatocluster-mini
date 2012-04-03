@@ -24,7 +24,8 @@ module.exports = {
     clusterRoute: function(id) {
       ss.rpc('cluster.join', id, function(error) {
         if (error) return alert('Error occured... sowwy!');
-        clusterView.render();
+        startView.hide();
+        clusterView.show();
       });
     },
 
@@ -33,7 +34,8 @@ module.exports = {
      * root page
      */
     startRoute: function() {
-      startView.render();
+      clusterView.hide();
+      startView.show();
     },
 
     defaultRoute: function(splat) {
