@@ -18,16 +18,17 @@ exports.actions = function(req, res, ss) {
     /**
      * Subscribes the current session to the provided cluster id
      */
-    join: function(clusterId) {
+    join: function(id) {
       // Resets all channels, atm you can only subscribe in one
       // channel.
       req.session.channel.reset();
-      Cluster.findById(clusterId, function(error, cluster) {
+      Cluster.findById(id, function(error, cluster) {
         if (error) return res(error);
         if (!cluster) return res("Unable to join cluster, because it doesn't exist");
+
         req.session.cluster = cluster._id.toString();
-        req.session.channel.subscribe(clusterId);
-        res();
+        req.session.channel.subscribe(id);
+        res(null, cluster.toJSON());
       });
     }
   }

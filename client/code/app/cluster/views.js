@@ -1,76 +1,80 @@
 var models = require('./models')
   , collections = require('./collections');
 
-module.exports = {
+/**
+ * ActivityView
+ * Handles ui logic for each activity
+ */
+exports.ActivityView = Backbone.View.extend({
+});
 
-  /**
-   * Activity View
-   */
-  ActivityView: Backbone.View.extend({
-    render: function() {
-      return this;
-    }
-  }),
+/**
+ * ClusterView
+ * Handles ui logic for the Cluster
+ */
+exports.ClusterView = Backbone.View.extend({
 
-  /**
-   * View that handles the navigation
-   */
-  NavigationView: Backbone.View.extend({
-  }),
+  initialize: function() {
+    this.activities = new collections.ActivityCollection();
+    this.activities.fetch();
+  },
 
-  /**
-   * Cluster View
-   * Handles all UI interaction in the Cluster
-   */
-  ClusterView: Backbone.View.extend({
+  events: {
+    "click button": "createActivity"
+  },
 
-    initialize: function() {
-      this.activities = new collections.ActivityCollection();
-    },
+  createActivity: function(evt) {
+  },
 
-    events: {
-      "click button": "createActivity"
-    },
+  hide: function(options) {
+    this.$el.hide();
+  },
 
-    createActivity: function(evt) {
-      var activity = new models.Activity({ title: 'Demo' });
-      ss.rpc('cluster.activity.create', activity.toJSON(), function(error) {
-        if (error) return alert("An error occured");
-      });
-    },
+  show: function(options) {
+    this.$el.show();
+  }
 
-    hide: function(options) {
-      $(this.el).hide();
-    },
+});
 
-    show: function(options) {
-      $(this.el).show();
-    }
-  }),
+/**
+ * Object that encapsulates modals
+ * in the application
+ */
+exports.modal = {
 
-  /**
-   * Start View
-   */
-  StartView: Backbone.View.extend({
+  show: function(tmplName, values, options) {
+    var html = ss.tmpl[tmplName].render(values);
+    this.current = $(html).appendTo('body').modal();
+  }
 
-    events: {
-      "click button": "createCluster"
-    },
-
-    createCluster: function(evt) {
-      // Call the Server and Create new Cluster
-      ss.rpc('cluster.create', function(id) {
-        // Navigate to the newly created cluster
-        app.navigate('cluster/'+id, { trigger: true });
-      });
-    },
-
-    hide: function(options) {
-      $(this.el).hide();
-    },
-
-    show: function(options) {
-      $(this.el).show();
-    }
-  })
 };
+
+exports.NavigationView = Backbone.View.extend({
+});
+
+exports.StartView = Backbone.View.extend({
+
+  events: {
+    "click button": "createCluster"
+  },
+
+  createCluster: function(evt) {
+    exports.modal.show('user-define');
+    return;
+
+    // Call the Server and Create new Cluster
+    ss.rpc('cluster.create', function(id) {
+      // Navigate to the newly created cluster
+      app.navigate('cluster/'+id, { trigger: true });
+    });
+  },
+
+  hide: function(options) {
+    this.$el.hide();
+  },
+
+  show: function(options) {
+    this.$el.show();
+  }
+
+});

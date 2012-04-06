@@ -1,46 +1,47 @@
-var views = require('./views');
+var views = require('./views')
+  , models = require('./models');
 
-module.exports = {
+/**
+ * Router for app
+ */
+exports.AppRouter = Backbone.Router.extend({
+
+  initialize: function() {
+    navigationView = new views.NavigationView({ el: $('.navbar') });
+  },
+
+  routes: {
+    ""             : "startRoute",
+    "cluster/:id"  : "clusterRoute",
+    "*splat"       : "defaultRoute"
+  },
+
   /**
-   * Router for app
+   * The Cluster route are triggered when
+   * a person joins a cluster
    */
-  AppRouter: Backbone.Router.extend({
-
-    initialize: function() {
-      clusterView = new views.ClusterView({ el: $('#cluster') });
-      startView = new views.StartView({ el: $('#start') });
-    },
-
-    routes: {
-      ""             : "startRoute",
-      "cluster/:id"  : "clusterRoute",
-      "*splat"       : "defaultRoute"
-    },
-
-    /**
-     * The Cluster route are triggered when
-     * a person joins a cluster
-     */
-    clusterRoute: function(id) {
-      ss.rpc('cluster.join', id, function(error) {
-        if (error) return alert('Error occured... sowwy!');
-        startView.hide();
-        clusterView.show();
+  clusterRoute: function(id) {
+    ss.rpc('cluster.join', id, function(error, cluster) {
+      if (error) return alert('Error occured... sowwy!');
+      clusterView = new views.ClusterView({
+        el: $('#cluster'),
+        model: new models.Cluster(cluster)
       });
-    },
+      startView.hide();
+      clusterView.show();
+    });
+  },
 
-    /**
-     * The Start route are triggered when loading the
-     * root page
-     */
-    startRoute: function() {
-      clusterView.hide();
-      startView.show();
-    },
+  /**
+   * The Start route are triggered when loading the
+   * root page
+   */
+  startRoute: function() {
+    startView = new views.StartView({ el: $('#start') });
+    startView.show();
+  },
 
-    defaultRoute: function(splat) {
-      // Someone tampered with the url... God damn them!
-      // Do something!!!
-    }
-  })
-};
+  defaultRoute: function(splat) {
+    this.navigate('/', { trigger: true });
+  }
+});

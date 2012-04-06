@@ -7,11 +7,28 @@ module.exports = {
   ActivityCollection: Backbone.Model.extend({
     model: models.Activity,
 
+    /**
+     * Add listeners
+     */
     initialize: function() {
-      var _this = this;
-      ss.event.on('activityCreated', function(activity, channelName) {
-        _this.add(activity);
-      });
+    },
+
+    /**
+     * Add sync implementation through websocket
+     */
+    sync: function(method, model, options) {
+      if (method == 'create') {
+      }
+
+      else if (method == 'read') {
+
+      }
+
+      else if (method == 'update') {
+      }
+
+      else if (method == 'delete') {
+      }
     }
   }),
 
