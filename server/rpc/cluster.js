@@ -8,10 +8,11 @@ exports.actions = function(req, res, ss) {
     /**
      * Creates a new Cluster and returns it's id
      */
-    create: function() {
-      var cluster = new Cluster({ createdBy: 'demo' });
+    create: function(title) {
+      var cluster = new Cluster({ title: title });
       cluster.save(function(error) {
-        res(cluster._id.toString());
+        if (error) return res(error);
+        res(null, cluster.toJSON());
       });
     },
 
@@ -24,8 +25,7 @@ exports.actions = function(req, res, ss) {
       req.session.channel.reset();
       Cluster.findById(id, function(error, cluster) {
         if (error) return res(error);
-        if (!cluster) return res("Unable to join cluster, because it doesn't exist");
-
+        if (!cluster) return res(new Error("Cluster with that Id doesn't exist"));
         req.session.cluster = cluster._id.toString();
         req.session.channel.subscribe(id);
         res(null, cluster.toJSON());

@@ -1,0 +1,15 @@
+#cluster-new.modal.fade
+  .modal-header
+    h2 L'Chaim, It's a Cluster!
+  .modal-body
+    form.form-horizontal
+      .control-group
+        label.control-label(for='name') Your Name?
+        .controls
+          input#user-name.input-xlarge(type='text',placeholder='Enter a name')
+      .control-group
+        label.control-label(for='cluster-name') Cluster Name?
+        .controls
+          input#cluster-name.input-xlarge(type='text',placeholder='Name your Cluster (optional)')
+  .modal-footer
+    button.continue.btn.btn-primary.btn-large Continue

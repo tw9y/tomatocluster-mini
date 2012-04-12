@@ -1,11 +1,23 @@
 var models = require('./models')
-  , collections = require('./collections');
+  , collections = require('./collections')
+  , modals = require('./modals');
 
 /**
  * ActivityView
  * Handles ui logic for each activity
  */
 exports.ActivityView = Backbone.View.extend({
+  tagName: 'li',
+  template: ss.tmpl['cluster-activity'],
+
+  initialize: function() {
+    _.bindAll(this, 'render');
+  },
+
+  render: function() {
+    $(this.el).html(this.template.render(this.model));
+    return this;
+  }
 });
 
 /**
@@ -13,9 +25,18 @@ exports.ActivityView = Backbone.View.extend({
  * Handles ui logic for the Cluster
  */
 exports.ClusterView = Backbone.View.extend({
+  template: ss.tmpl['cluster'],
+  className: "container-fluent",
 
   initialize: function() {
-    this.activities = new collections.ActivityCollection();
+    _.bindAll(this, 'addOne', 'addAll', 'render');
+    this.activities = new collections.ActivityCollection({ cluster: this.model });
+
+    // Attach event listeners to the collection
+    this.activities.bind('add', this.addOne);
+    this.activities.bind('reset', this.addAll);
+    this.activities.bind('all', this.render);
+
     this.activities.fetch();
   },
 
@@ -23,58 +44,77 @@ exports.ClusterView = Backbone.View.extend({
     "click button": "createActivity"
   },
 
+  addOne: function(activity) {
+    var view = new exports.ActivityView({ model: activity });
+    this.$('ul.activities').prepend(view.render().el);
+  },
+
+  addAll: function() {
+    this.$('ul.activities').empty();
+    this.activities.each(this.addOne);
+  },
+
   createActivity: function(evt) {
+    var activity = this.activities.create();
   },
 
-  hide: function(options) {
-    this.$el.hide();
-  },
-
-  show: function(options) {
-    this.$el.show();
+  render: function() {
+    $(this.el).html(this.template.render({ activities: this.activities, cluster: this.cluster }));
+    return this;
   }
 
 });
 
 /**
- * Object that encapsulates modals
- * in the application
+ * View that handles the navbar
  */
-exports.modal = {
-
-  show: function(tmplName, values, options) {
-    var html = ss.tmpl[tmplName].render(values);
-    this.current = $(html).appendTo('body').modal();
-  }
-
-};
-
 exports.NavigationView = Backbone.View.extend({
-});
 
-exports.StartView = Backbone.View.extend({
+  initialize: function() {
+    _.bindAll(this, 'render');
+    this.name = this.$('.user-name');
+    this.model.fetch();
+    this.model.bind('change', this.render);
+  },
 
   events: {
-    "click button": "createCluster"
+    "click .user-name": "editUser"
+  },
+
+  editUser: function(evt) {
+  },
+
+  render: function() {
+    var name = this.model.get('name');
+    if (name) {
+      this.name.text(name);
+    }
+    return this;
+  }
+
+});
+
+/**
+ * StartView handles login in the start page
+ */
+exports.StartView = Backbone.View.extend({
+
+  template: ss.tmpl['start-content'],
+  id: "start",
+  className: "container-fluent view",
+
+  events: {
+    "click #create-cluster": "createCluster"
   },
 
   createCluster: function(evt) {
-    exports.modal.show('user-define');
-    return;
-
-    // Call the Server and Create new Cluster
-    ss.rpc('cluster.create', function(id) {
-      // Navigate to the newly created cluster
-      app.navigate('cluster/'+id, { trigger: true });
-    });
+    if (this.createModal) this.createModal.remove();
+    this.createModal = new modals.NewClusterView();
+    this.createModal.render();
   },
 
-  hide: function(options) {
-    this.$el.hide();
-  },
-
-  show: function(options) {
-    this.$el.show();
+  render: function() {
+    $(this.el).html(this.template.render());
+    return this;
   }
-
 });

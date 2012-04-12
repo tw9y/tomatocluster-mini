@@ -12,32 +12,6 @@ html(lang="en")
         .container
           a.brand(href="#") Tomato Cluster
           .nav-collapse
-            ul.nav
-              li.active: a(href='') 24HR
+            ul#clusters.nav
             ul.nav.pull-right
-              li: a#username(href='') Markus
-
-    #start.container-fluent.view
-      section.hero-unit
-        .row-fluent
-          .span6.offset2
-          h1 Tomato Cluster
-          p
-            | The Pomodoro Technique is an awesome tool
-            | to increase your <a href=""><strong>productivity</strong></a>. You have probably tried a dozen project
-            | management systems before. How long did you keep on using them? A week?
-            | So, we created a <a href=""><strong>disturbance management system</strong></a>
-          p
-            | To get going just press the <strong>huge</strong> button below
-            | to create a new cluster, send the url to a couple
-            | of friends. That's it... everything else should explain
-            | itself.
-
-          button.btn.btn-large.btn-primary(type='button')
-            | Create a Cluster
-          a(href="#more")
-            | Nope, need know more before pressing any buttons
-
-
-    #cluster.view
-      button.btn.btn-large.btn-primary Create Activity
+              li: a.user-name

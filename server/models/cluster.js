@@ -6,11 +6,12 @@ var mongoose = require('mongoose')
  */
 var Cluster = new Schema({
     createdAt: { type: Date, default: Date.now }
-  , createdBy: { type: String, required: true }
+  , title: { type: String }
   , lastActivity: { type: Date }
 });
 
-Cluster.method('ActiveActivities', function() {
+Cluster.method('findActiveActivities', function() {
+
 });
 
 // Create the model and export it at the same time

@@ -7,7 +7,10 @@ var views = require('./views')
 exports.AppRouter = Backbone.Router.extend({
 
   initialize: function() {
-    navigationView = new views.NavigationView({ el: $('.navbar') });
+    navigationView = new views.NavigationView({ 
+      el: $('.navbar'),
+      model: new models.User()
+    });
   },
 
   routes: {
@@ -24,11 +27,10 @@ exports.AppRouter = Backbone.Router.extend({
     ss.rpc('cluster.join', id, function(error, cluster) {
       if (error) return alert('Error occured... sowwy!');
       clusterView = new views.ClusterView({
-        el: $('#cluster'),
         model: new models.Cluster(cluster)
       });
-      startView.hide();
-      clusterView.show();
+      if (typeof(startView) !== 'undefined') startView.remove();
+      $('body').append(clusterView.render().el);
     });
   },
 
@@ -37,8 +39,9 @@ exports.AppRouter = Backbone.Router.extend({
    * root page
    */
   startRoute: function() {
-    startView = new views.StartView({ el: $('#start') });
-    startView.show();
+    if (typeof(startView) !== 'undefined') startView.remove();
+    startView = new views.StartView();
+    $('body').append(startView.render().el);
   },
 
   defaultRoute: function(splat) {

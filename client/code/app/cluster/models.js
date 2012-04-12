@@ -15,4 +15,6 @@ exports.Cluster = Backbone.Model.extend({
  * User Model
  */
 exports.User = Backbone.Model.extend({
+  sync: function(method, model, options) {
+  }
 });
