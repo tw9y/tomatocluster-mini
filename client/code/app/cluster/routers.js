@@ -6,6 +6,11 @@ var views = require('./views')
  */
 exports.AppRouter = Backbone.Router.extend({
 
+  /**
+   * Create a Navigation View on initialization
+   * since that's the only view that's persistant 
+   * all the time
+   */
   initialize: function() {
     navigationView = new views.NavigationView({ 
       el: $('.navbar'),

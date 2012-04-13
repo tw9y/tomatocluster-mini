@@ -41,7 +41,7 @@ exports.ClusterView = Backbone.View.extend({
   },
 
   events: {
-    "click button": "createActivity"
+    "click .newActivity": "createActivity"
   },
 
   addOne: function(activity) {
