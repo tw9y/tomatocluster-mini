@@ -37,7 +37,7 @@ exports.ClusterView = Backbone.View.extend({
     this.activities.bind('reset', this.addAll);
     this.activities.bind('all', this.render);
 
-    this.activities.fetch();
+    //this.activities.fetch();
   },
 
   events: {
@@ -73,7 +73,6 @@ exports.NavigationView = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render');
     this.name = this.$('.user-name');
-    this.model.fetch();
     this.model.bind('change', this.render);
   },
 

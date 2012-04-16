@@ -12,6 +12,6 @@ ss.server.on('reconnect', function(){
 
 ss.server.on('ready', function(){
   jQuery(function(){
-    require('./cluster/main');
+    require('./app');
   });
 });
