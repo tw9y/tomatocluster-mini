@@ -1,8 +1,10 @@
 
+
 /**
+ * NewClusterView
  * A modal window displayed when creating a new cluster
  */
-exports.NewClusterView = Backbone.View.extend({
+module.exports = Backbone.View.extend({
   template: ss.tmpl['cluster-new'],
 
   events: {
@@ -15,8 +17,10 @@ exports.NewClusterView = Backbone.View.extend({
   },
 
   continue: function(evt) {
-    navigationView.model.set('name', this.name.val());
+    navigationView.model.user.set('name', this.name.val());
     var _this = this;
+    var cluster = app.clusters.create({ name: this.clusterName.val()});
+
     ss.rpc('cluster.create', this.clusterName.val(), function(error, cluster) {
       if (error) return alert('An error occured');
       app.navigate('/cluster/' + cluster._id, { trigger: true });

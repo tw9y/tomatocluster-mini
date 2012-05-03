@@ -1,23 +1,14 @@
-var views = require('./views')
-  , models = require('./models')
-  , collections = require('./collections');
+var AppView = require('./views/appView')
+  , User = require('./models/user')
+  , Cluster = require('./models/cluster');
 
 /**
  * Router for app
  */
 exports.AppRouter = Backbone.Router.extend({
 
-  /**
-   * Create a Navigation View on initialization
-   * since that's the only view that's persistant
-   * all the time
-   */
   initialize: function() {
-    this.collections = new collections.ClusterCollection();
-    navigationView = new views.NavigationView({
-      el: $('.navbar'),
-      model: new models.User()
-    });
+    window.appView = new AppView;
   },
 
   routes: {
@@ -31,9 +22,9 @@ exports.AppRouter = Backbone.Router.extend({
    * a person joins a cluster
    */
   clusterRoute: function(id) {
-    var cluster = new models.Cluster({ id: id });
+    var cluster = new Cluster({ id: id });
     cluster.fetch();
-    this.collections.add(cluster);
+    this.clusters.add(cluster);
 
     ss.rpc('cluster.join', id, function(error, cluster) {
       if (error) return alert('Error occured... sowwy!');
@@ -51,9 +42,7 @@ exports.AppRouter = Backbone.Router.extend({
    * root page
    */
   startRoute: function() {
-    if (typeof(startView) !== 'undefined') startView.remove();
-    startView = new views.StartView();
-    $('body').append(startView.render().el);
+    
   },
 
   defaultRoute: function(splat) {

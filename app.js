@@ -25,7 +25,7 @@ config.apply(ss);
 
 // Start web server
 var server = http.Server(ss.http.middleware);
-server.listen(3000);
+server.listen(ss.serverPort);
 
 // Start SocketStream
 ss.start(server);

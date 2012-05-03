@@ -1,7 +1,8 @@
-var routers = require('./routers');
+var routers = require('./routers')
+  , sync = require('./sync');
 
 /*
  * Instantiate the App Router
  */
-app = new routers.AppRouter();
+window.app = new routers.AppRouter();
 Backbone.history.start({ pushState: true });
