@@ -76,14 +76,12 @@ exports.UsersView = Backbone.View.extend({
   className: "users",
 
   initialize: function() {
-    
   },
 
   render: function() {
     $(this.el).html(this.template.render({users: [{name: 'markus'}, {name: 'kristian'}]}));
     return this;
   }
-
 });
 /**
  * View that handles the navbar

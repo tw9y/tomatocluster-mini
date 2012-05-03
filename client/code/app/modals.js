@@ -7,6 +7,7 @@ exports.NewClusterView = Backbone.View.extend({
 
   events: {
     "click button.continue": "continue"
+    "keypress input": "createOnEnter"
   },
 
   initialize: function() {
@@ -21,6 +22,10 @@ exports.NewClusterView = Backbone.View.extend({
       app.navigate('/cluster/' + cluster._id, { trigger: true });
       _this.modal.modal('hide');
     });
+  },
+
+  createOnEnter: function(evt) {
+    
   },
 
   render: function() {
