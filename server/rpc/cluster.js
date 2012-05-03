@@ -30,6 +30,18 @@ exports.actions = function(req, res, ss) {
         req.session.channel.subscribe(id);
         res(null, cluster.toJSON());
       });
+    },
+
+    /**
+     * Unsubscribes a user from a cluster (for example when leaving)
+     */
+    leave: function(cluster) {
+      // Send a message to the otehr subscribers of the cluster
+      ss.publish.channel(cluster._id, "userLeave", { user: req.session.userId });
+
+      // Unsubscribe to the cluster
+      req.session.channel.unsubscribe(cluster._id);
+
     }
   }
 }

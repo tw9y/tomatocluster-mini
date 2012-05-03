@@ -9,6 +9,7 @@ describe("Cluster", function() {
   it("validates presence of creator", function(next) {
     var _this = this;
     this.cluster.save(function(errors) {
+      next();
     });
   });
 });
