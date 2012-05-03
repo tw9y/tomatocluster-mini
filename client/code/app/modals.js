@@ -6,12 +6,12 @@ exports.NewClusterView = Backbone.View.extend({
   template: ss.tmpl['cluster-new'],
 
   events: {
-    "click button.continue": "continue"
+    "click button.continue": "continue",
     "keypress input": "createOnEnter"
   },
 
   initialize: function() {
-    _.bindAll(this, 'render', 'continue');
+    _.bindAll(this, 'render', 'continue', 'createOnEnter');
   },
 
   continue: function(evt) {
@@ -25,7 +25,7 @@ exports.NewClusterView = Backbone.View.extend({
   },
 
   createOnEnter: function(evt) {
-    
+    if (evt.keyCode == 13) this.continue(evt);
   },
 
   render: function() {
