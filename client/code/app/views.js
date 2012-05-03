@@ -30,6 +30,7 @@ exports.ClusterView = Backbone.View.extend({
 
   initialize: function() {
     _.bindAll(this, 'addOne', 'addAll', 'render');
+    this.users = new exports.UsersView();
     this.activities = new collections.ActivityCollection({ cluster: this.model });
 
     // Attach event listeners to the collection
@@ -60,11 +61,30 @@ exports.ClusterView = Backbone.View.extend({
 
   render: function() {
     $(this.el).html(this.template.render({ activities: this.activities, cluster: this.cluster }));
+    $(this.el).append(this.users.render().el);
     return this;
   }
 
 });
 
+/**
+ * View that handles active users
+ */
+exports.UsersView = Backbone.View.extend({
+  template: ss.tmpl['cluster-users'],
+  tagName: "ul",
+  className: "users",
+
+  initialize: function() {
+    
+  },
+
+  render: function() {
+    $(this.el).html(this.template.render({users: [{name: 'markus'}, {name: 'kristian'}]}));
+    return this;
+  }
+
+});
 /**
  * View that handles the navbar
  */

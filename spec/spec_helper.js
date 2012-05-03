@@ -4,4 +4,4 @@ process.env.SS_ENV = 'test';
 // Exports
 module.exports.should = require('should');
 
-//require('../app');
+require('../app');
