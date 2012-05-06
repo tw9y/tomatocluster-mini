@@ -3,14 +3,13 @@ var AppView = require('./views/appView')
   , Cluster = require('./models/cluster');
 
 /**
- * Router for app
+ * Router for the application
  */
-exports.AppRouter = Backbone.Router.extend({
+module.exports = Backbone.Router.extend({
 
-  initialize: function() {
-    window.appView = new AppView;
-  },
-
+  /*
+   * Register our supported routes
+   */
   routes: {
     ""             : "startRoute",
     "cluster/:id"  : "clusterRoute",
