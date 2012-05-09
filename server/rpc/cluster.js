@@ -16,6 +16,9 @@ exports.actions = function(req, res, ss) {
       });
     },
 
+    read: function() {
+    },
+
     /**
      * Subscribes the current session to the provided cluster id
      */

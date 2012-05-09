@@ -3,7 +3,7 @@ var Router = require('./router')
   , AppView = require('./views/appView');
 
 // Instantiate the main application view
-// and a router
+// and our router
 window.app = new AppView();
 window.router = new Router();
 Backbone.history.start({ pushState: true });

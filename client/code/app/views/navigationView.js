@@ -7,6 +7,7 @@ module.exports = Backbone.View.extend({
 
   initialize: function() {
     _.bindAll(this, 'render');
+    app.currentUser.bind('change', render);
     this.name = this.$('.user-name');
   },
 
@@ -19,10 +20,7 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
-    var name = app.currentUser.get('name');
-    if (name) {
-      this.name.text(name);
-    }
+    this.$('.user-name').text(app.currentUser.get('name'));
     return this;
   }
 

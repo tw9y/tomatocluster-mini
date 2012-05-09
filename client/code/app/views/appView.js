@@ -1,6 +1,7 @@
 var ClusterCollection = require('../collections/clusterCollection')
   , NavigationView = require('./navigationView')
-  , StartView = require('./startView');
+  , StartView = require('./startView')
+  , User = require('../models/user');
 
 /*
  * AppView is our topmost level ui component
@@ -10,12 +11,9 @@ module.exports = Backbone.View.extend({
 
   initialize: function() {
     _.bindAll(this, 'clusterAdded');
+    this.currentUser = new User;
     this.clusters = new ClusterCollection;
-    this.clusters.bind('add', this.clusterAdded);
     this.navigation = new NavigationView;
     this.startView = new StartView;
-  },
-
-  clusterAdded: function(cluster) {
   }
 });
