@@ -10,9 +10,11 @@ module.exports = Backbone.View.extend({
   el: $('#tomatocluster'),
 
   initialize: function() {
-    _.bindAll(this, 'clusterAdded');
     this.currentUser = new User;
     this.clusters = new ClusterCollection;
+  },
+
+  render: function() {
     this.navigation = new NavigationView;
     this.startView = new StartView;
   }

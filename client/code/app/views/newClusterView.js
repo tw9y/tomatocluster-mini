@@ -13,19 +13,18 @@ module.exports = Backbone.View.extend({
   },
 
   initialize: function() {
-    _.bindAll(this, 'render', 'continue', 'createOnEnter');
+    _.bindAll(this, 'render', 'continue', 'createOnEnter', 'clusterCreated');
+    app.clusters.bind('add', this.clusterCreated);
   },
 
   continue: function(evt) {
-    navigationView.model.user.set('name', this.name.val());
-    var _this = this;
-    var cluster = app.clusters.create({ name: this.clusterName.val()});
+    app.currentUser.set('name', this.name.val());
+    var cluster = app.clusters.create({ title: this.clusterName.val() }, { wait: true });
+    this.modal.modal('hide');
+  },
 
-    ss.rpc('cluster.create', this.clusterName.val(), function(error, cluster) {
-      if (error) return alert('An error occured');
-      app.navigate('/cluster/' + cluster._id, { trigger: true });
-      _this.modal.modal('hide');
-    });
+  clusterCreated: function(cluster) {
+    router.navigate('/cluster/' + cluster.id);
   },
 
   createOnEnter: function(evt) {

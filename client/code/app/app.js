@@ -4,6 +4,9 @@ var Router = require('./router')
 
 // Instantiate the main application view
 // and our router
-window.app = new AppView();
-window.router = new Router();
+window.app = new AppView;
+window.router = new Router;
 Backbone.history.start({ pushState: true });
+
+// Lastly "render" the application
+window.app.render();

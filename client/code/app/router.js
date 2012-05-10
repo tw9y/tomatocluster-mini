@@ -23,17 +23,7 @@ module.exports = Backbone.Router.extend({
   clusterRoute: function(id) {
     var cluster = new Cluster({ id: id });
     cluster.fetch();
-    this.clusters.add(cluster);
-
-    ss.rpc('cluster.join', id, function(error, cluster) {
-      if (error) return alert('Error occured... sowwy!');
-      clusterView = new views.ClusterView({
-        model: new models.Cluster(cluster)
-      });
-
-      if (typeof(startView) !== 'undefined') startView.remove();
-      $('body').append(clusterView.render().el);
-    });
+    app.clusters.add(cluster);
   },
 
   /**

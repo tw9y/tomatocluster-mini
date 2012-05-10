@@ -8,29 +8,25 @@ exports.actions = function(req, res, ss) {
     /**
      * Creates a new Cluster and returns it's id
      */
-    create: function(title) {
-      var cluster = new Cluster({ title: title });
+    create: function(cluster) {
+      var cluster = new Cluster(cluster);
       cluster.save(function(error) {
         if (error) return res(error);
+        req.session.channel.reset();
+        req.session.channel.subscribe(cluster._id.toString());
         res(null, cluster.toJSON());
       });
     },
 
-    read: function() {
-    },
-
     /**
-     * Subscribes the current session to the provided cluster id
+     * Reads the cluster from the provided cluster stub
      */
-    join: function(id) {
-      // Resets all channels, atm you can only subscribe in one
-      // channel.
-      req.session.channel.reset();
-      Cluster.findById(id, function(error, cluster) {
+    read: function(cluster) {
+      Cluster.findById(cluster.id, function(error, cluster) {
         if (error) return res(error);
-        if (!cluster) return res(new Error("Cluster with that Id doesn't exist"));
-        req.session.cluster = cluster._id.toString();
-        req.session.channel.subscribe(id);
+        if (!cluster) return res(new Error("Could not find a cluster with that id"));
+        req.session.channel.reset();
+        req.session.channel.subscribe(cluster._id.toString());
         res(null, cluster.toJSON());
       });
     },

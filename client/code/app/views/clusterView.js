@@ -1,4 +1,5 @@
-var ActivityView = require('./activityView');
+var ActivityView = require('./activityView')
+  , ActivityCollection = require('../collections/activityCollection');
 
 /**
  * ClusterView
@@ -10,14 +11,14 @@ module.exports = Backbone.View.extend({
 
   initialize: function() {
     _.bindAll(this, 'addOne', 'addAll', 'render');
-//    this.activities = new collections.ActivityCollection({ cluster: this.model });
+    this.activities = new ActivityCollection({ cluster: this.model });
 
     // Attach event listeners to the collection
-//    this.activities.bind('add', this.addOne);
-//    this.activities.bind('reset', this.addAll);
-//    this.activities.bind('all', this.render);
+    this.activities.bind('add', this.addOne);
+    this.activities.bind('reset', this.addAll);
+    this.activities.bind('all', this.render);
 
-    //this.activities.fetch();
+    this.activities.fetch();
   },
 
   events: {
