@@ -13,27 +13,27 @@ html(lang="en")
           .container-fluid
             a.brand(href="#") Tomato Cluster
             .nav-collapse
-              ul#clusters.nav
+              ul.nav.clusters
               ul.nav.pull-right
                 li: a.user-name
 
-      #start.container-fluent
-        article.hero-unit
-          .row-fluent
-            .span6.offset2
-            h1 Tomato Cluster
-            p
-              | The Pomodoro Technique is an awesome tool
-              | to increase your <a href=""><strong>productivity</strong></a>. You have probably tried a dozen project
-              | management systems before. How long did you keep on using them? A week?
-              | So, we created a <a href=""><strong>disturbance management system</strong></a>
-            p
-              | To get going just press the <strong>huge</strong> button below
-              | to create a new cluster, send the url to a couple
-              | of friends. That's it... everything else should explain
-              | itself.
+      #start.container-fluid
+        .row-fluid
+          .span12
+            article.hero-unit.span6.offset3
+              h1 Tomato Cluster
+              p
+                | The Pomodoro Technique is an awesome tool
+                | to increase your <a href=""><strong>productivity</strong></a>. You have probably tried a dozen project
+                | management systems before. How long did you keep on using them? A week?
+                | So, we created a <a href=""><strong>disturbance management system</strong></a>
+              p
+                | To get going just press the <strong>huge</strong> button below
+                | to create a new cluster, send the url to a couple
+                | of friends. That's it... everything else should explain
+                | itself.
 
-            button#create-cluster.btn.btn-large.btn-primary(type='button')
-              | Create a Cluster
-            a(href="#more")
-              | Nope, need know more before pressing any buttons
+              button#create-cluster.btn.btn-large.btn-primary(type='button')
+                | Create a Cluster
+              a.more(href="#more")
+                | Nope, need know more before pressing any buttons

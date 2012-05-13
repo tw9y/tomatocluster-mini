@@ -6,13 +6,18 @@ module.exports = Backbone.View.extend({
   el: $('.navbar'),
 
   initialize: function() {
-    _.bindAll(this, 'render');
+    _.bindAll(this, 'render', 'clusterAdded');
     app.currentUser.bind('change', this.render);
+    app.clusters.bind('add', this.clusterAdded);
     this.name = this.$('.user-name');
   },
 
   events: {
     "click .user-name": "editUser"
+  },
+
+  clusterAdded: function(cluster) {
+    console.log('hello');
   },
 
   editUser: function(evt) {

@@ -1,9 +1,10 @@
 // Requires
-var print = require('util').print,
-    path = require('path'),
-    fs = require('fs'),
-    forever = require('forever'),
-    Mocha = require('mocha');
+var print = require('util').print
+  , path = require('path')
+  , fs = require('fs')
+  , forever = require('forever')
+  , Mocha = require('mocha')
+  , exec = require('child_process').exec;
 
 // ANSI Terminal Colors
 var bold = '\033[0;1m',
@@ -29,6 +30,11 @@ task('dev', [], function() {
   dev();
 });
 
+desc('Generates documentation for the application using docco');
+task('doc', [], function() {
+  doc();
+});
+
 /**********************
  * Le functions
  *********************/
@@ -47,4 +53,10 @@ function dev() {
     watchDirectory: 'server'
   });
   app.start();
+}
+
+function doc() {
+  exec('docco ./client/*', function() {
+    console.log('Done');
+  });
 }

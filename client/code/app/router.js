@@ -2,34 +2,28 @@ var AppView = require('./views/appView')
   , User = require('./models/user')
   , Cluster = require('./models/cluster');
 
-/**
- * Router for the application
- */
+// Router
+// ------
+// The router handles our routes for the application.
+
+// Extends Backbone Router
 module.exports = Backbone.Router.extend({
 
-  /*
-   * Register our supported routes
-   */
+  // Register our routes and their callback
   routes: {
     ""             : "startRoute",
-    "cluster/:id"  : "clusterRoute",
+    "clusters/:id"  : "clusterRoute",
     "*splat"       : "defaultRoute"
   },
 
-  /**
-   * The Cluster route are triggered when
-   * a person joins a cluster
-   */
+  // Callback for when an individual cluster route
+  // is triggered.
   clusterRoute: function(id) {
-    var cluster = new Cluster({ id: id });
+    var cluster = new Cluster({ '_id': id });
     cluster.fetch();
     app.clusters.add(cluster);
   },
 
-  /**
-   * The Start route are triggered when loading the
-   * root page
-   */
   startRoute: function() {
     
   },

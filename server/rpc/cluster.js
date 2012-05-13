@@ -1,13 +1,15 @@
 var Cluster = require('../models/cluster');
 
+// Cluster Pub/Sub
+// ---------------
+
+// Implements CRUD actions for the Cluster model
 exports.actions = function(req, res, ss) {
   req.use('session');
 
   return {
 
-    /**
-     * Creates a new Cluster and returns it's id
-     */
+    // # Create
     create: function(cluster) {
       var cluster = new Cluster(cluster);
       cluster.save(function(error) {
@@ -18,15 +20,17 @@ exports.actions = function(req, res, ss) {
       });
     },
 
-    /**
-     * Reads the cluster from the provided cluster stub
-     */
+    // # Read
     read: function(cluster) {
       Cluster.findById(cluster.id, function(error, cluster) {
         if (error) return res(error);
         if (!cluster) return res(new Error("Could not find a cluster with that id"));
+
+        // Subscribe to the channel and publish a event
+        var channelId = cluster._id.toString();
         req.session.channel.reset();
-        req.session.channel.subscribe(cluster._id.toString());
+        req.session.channel.subscribe(channelId);
+        ss.publish.channel(channelId, 'cluster.userJoined', req.session.user);
         res(null, cluster.toJSON());
       });
     },
@@ -36,11 +40,10 @@ exports.actions = function(req, res, ss) {
      */
     leave: function(cluster) {
       // Send a message to the otehr subscribers of the cluster
-      ss.publish.channel(cluster._id, "userLeave", { user: req.session.userId });
+      ss.publish.channel(cluster._id, "cluster.userLeft", req.session.user);
 
       // Unsubscribe to the cluster
       req.session.channel.unsubscribe(cluster._id);
-
     }
   }
 }

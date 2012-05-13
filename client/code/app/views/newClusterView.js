@@ -1,43 +1,47 @@
 
-
-/**
- * NewClusterView
- * A modal window displayed when creating a new cluster
- */
+// New Cluster View
+// ----------------
+// Backbone view that handles the creation of a cluster. Displayed
+// as a Twitter Bootstrap modal.
 module.exports = Backbone.View.extend({
   template: ss.tmpl['cluster-new'],
 
+  // Define the events in our view
   events: {
-    "click button.continue": "continue",
-    "keypress input": "createOnEnter"
+    "click button.continue" : "create",
+    "keypress input"        : "createOnEnter"
   },
 
   initialize: function() {
-    _.bindAll(this, 'render', 'continue', 'createOnEnter', 'clusterCreated');
-    app.clusters.bind('add', this.clusterCreated);
+    _.bindAll(this, 'render', 'create', 'created', 'createOnEnter');
   },
 
-  continue: function(evt) {
-    app.currentUser.set('name', this.name.val());
-    var cluster = app.clusters.create({ title: this.clusterName.val() }, { wait: true });
+  // Starts creating a cluster.
+  create: function(evt) {
+    app.currentUser.set('name', this.$('#user-name').val());
+    var cluster = app.clusters.create({ title: this.$('#cluster-name').val() }, {
+      wait: true,
+      success: this.created
+    });
+  },
+
+  // We want confirmation from the server in this case
+  // because we need the generated id
+  created: function(cluster) {
+    router.navigate('/clusters/' + cluster.id);
     this.modal.modal('hide');
   },
 
-  clusterCreated: function(cluster) {
-    router.navigate('/cluster/' + cluster.id);
-  },
-
+  // Listen to 'enter' button
   createOnEnter: function(evt) {
-    if (evt.keyCode == 13) this.continue(evt);
+    if (evt.keyCode == 13) this.create(evt);
   },
 
   render: function() {
     $(this.el).html(this.template.render());
-    this.name = this.$('#user-name');
-    this.clusterName = this.$('#cluster-name');
     this.$el.appendTo('body');
     this.modal = this.$('.modal').modal();
-    this.name.focus();
+    this.$('#user-name').focus();
     return this;
   }
 });

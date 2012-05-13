@@ -1,12 +1,12 @@
 
-/*
- * Overrides Backbones default syncing
- */
+// Sync
+// ------------
+// We override backbones default sync function to provide
+// sync through socketstream.
 Backbone.sync = function(method, model, options) {
-  var rpcFunc = model.rpcType + '.' + method;
-  console.log(rpcFunc);
-  ss.rpc(rpcFunc, model, function(error, res) {
-    if (error) return options.fail();
+  var rpcAction = model.rpcType + '.' + method;
+  ss.rpc(rpcAction, model, function(error, res) {
+    if (error) return options.error();
     model.set(res);
     options.success();
   });
