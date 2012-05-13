@@ -23,7 +23,6 @@ exports.actions = function(req, res, ss) {
     // # Read
     // Occurs when someone visits a cluster route
     read: function(cluster) {
-      console.log(cluster);
       Cluster.findById(cluster._id, function(error, cluster) {
         if (error) return res(error);
         if (!cluster) return res("Could not find a cluster with that id");
