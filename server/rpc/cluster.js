@@ -21,23 +21,24 @@ exports.actions = function(req, res, ss) {
     },
 
     // # Read
+    // Occurs when someone visits a cluster route
     read: function(cluster) {
-      Cluster.findById(cluster.id, function(error, cluster) {
+      console.log(cluster);
+      Cluster.findById(cluster._id, function(error, cluster) {
         if (error) return res(error);
-        if (!cluster) return res(new Error("Could not find a cluster with that id"));
+        if (!cluster) return res("Could not find a cluster with that id");
 
         // Subscribe to the channel and publish a event
         var channelId = cluster._id.toString();
         req.session.channel.reset();
-        req.session.channel.subscribe(channelId);
+        // Publish the event that a user has joined
+        // before subscribing the user self.
         ss.publish.channel(channelId, 'cluster.userJoined', req.session.user);
+        req.session.channel.subscribe(channelId);
         res(null, cluster.toJSON());
       });
     },
 
-    /**
-     * Unsubscribes a user from a cluster (for example when leaving)
-     */
     leave: function(cluster) {
       // Send a message to the otehr subscribers of the cluster
       ss.publish.channel(cluster._id, "cluster.userLeft", req.session.user);

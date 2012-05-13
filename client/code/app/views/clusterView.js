@@ -12,11 +12,12 @@ module.exports = Backbone.View.extend({
     _.bindAll(this, 'addOne', 'addAll', 'userJoined', 'render');
 
     // Create an *ActivityCollection* for this cluster
+    // and bind the events
     this.activities = new ActivityCollection({ cluster: this.model });
     this.activities.bind('add', this.addOne);
     this.activities.bind('reset', this.addAll);
     this.activities.bind('all', this.render);
-    //this.activities.fetch();
+    this.activities.fetch();
 
     // Listen to Pub/Sub Events
     ss.event.on('cluster.userJoined', this.userJoined);
@@ -27,7 +28,6 @@ module.exports = Backbone.View.extend({
   },
 
   userJoined: function( user, channelName ) {
-    console.log('event running: ' + channelName + ' : ' + this.model.id);
     if ( channelName != this.model.id ) return;
     console.log('someone joined');
   },
